@@ -1,0 +1,373 @@
+/*-----
+#login-v2 {
+  height: 100%;
+  overflow: hidden;
+  background: url("/assets/images/backgrounds/march.jpg") no-repeat;
+  background-size: cover;
+}
+#login-v2 #login-v2-intro {
+  padding: 128px;
+}
+#login-v2 #login-v2-intro .logo {
+  width: 128px;
+  height: 128px;
+  line-height: 128px;
+  font-size: 86px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  color: #FFFFFF;
+  border-radius: 2px;
+  text-align: center;
+}
+#login-v2 #login-v2-intro .title {
+  font-size: 42px;
+  font-weight: 300;
+}
+#login-v2 #login-v2-intro .description {
+  padding-top: 8px;
+  font-size: 14px;
+  max-width: 600px;
+}
+    #login-v2 #login-v2-form-wrapper {
+        width: 416px;
+        min-width: 416px;
+        max-width: 416px;
+        height: 100%;
+        background: #FFFFFF;
+        margin-left: auto;  
+    }
+#login-v2 #login-v2-form-wrapper #login-v2-form {
+  padding: 128px 48px 48px 48px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .logo {
+  width: 128px;
+  height: 128px;
+  line-height: 128px;
+  font-size: 86px;
+  font-weight: 500;
+  margin: 32px auto;
+  color: #FFFFFF;
+  border-radius: 2px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .title {
+  font-size: 21px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .description {
+  padding-top: 8px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form {
+  width: 100%;
+  text-align: left;
+  padding-top: 32px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form md-checkbox {
+  margin: 0;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password {
+  font-size: 13px;
+  margin-top: 8px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password .remember-me {
+  margin-bottom: 16px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password .forgot-password {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form form .submit-button {
+  width: 100%;
+  margin: 16px auto;
+  display: block;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .separator {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 24px auto 16px auto;
+  position: relative;
+  overflow: hidden;
+  width: 100px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54);
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .separator .text {
+  display: inline-block;
+  vertical-align: baseline;
+  position: relative;
+  padding: 0 8px;
+  z-index: 9999;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:before, #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:after {
+  content: '';
+  display: block;
+  width: 30px;
+  position: absolute;
+  top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:before {
+  right: 100%;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:after {
+  left: 100%;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google, #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook {
+  width: 70%;
+  text-transform: none;
+  color: #FFFFFF;
+  font-size: 13px;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google md-icon, #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook md-icon {
+  color: #FFFFFF;
+  margin: 0 8px 0 0;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google {
+  background-color: #D73D32;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook {
+  background-color: #3f5c9a;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .register {
+  margin: 32px auto 24px auto;
+  width: 250px;
+  font-weight: 500;
+}
+#login-v2 #login-v2-form-wrapper #login-v2-form .register .text {
+  margin-right: 8px;
+}
+-----*/
+
+
+#login-v2 {
+  height: 100%;
+  min-height: 620px;
+  background: url("/assets/images/backgrounds/netizen-bg.jpg") no-repeat fixed;
+  background-size: cover; }
+  #login-v2 #login-v2-form-wrapper {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    padding: 2%; }
+    #login-v2 #login-v2-form-wrapper #login-v2-form {
+      width: 384px;
+      max-width: 384px;
+      padding: 0 0 12px;
+      margin: 2% auto 0;
+      background: #FFFFFF;
+      font-family: Roboto, sans-serif;
+      text-align: center; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .top-bg-11 {
+        background-color: #03284f;
+        padding: 30px 30px 26px;
+        margin: 0 auto;
+        }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .logo {
+          margin-bottom: 25px;
+        }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .text-style-01 {
+          font-family: Roboto, sans-serif;
+          font-size: 15px;
+          line-height: 24px;
+          color: #fff;
+        }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .title {
+        font-size: 16px;
+        padding: 33px 30px 5px; }
+      #login-v2 #login-v2-form-wrapper .description {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 7px 30px 6px; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form form {
+        width: 100%;
+        padding: 22px 50px;
+        text-align: center;
+          margin-bottom: 0;
+        }
+      #login-v2 #login-v2-form-wrapper input, #login-v2 #login-v2-form-wrapper select, #login-v2 #login-v2-form-wrapper textarea {
+          min-width: 100%;
+          max-width: 100%;
+          margin-bottom: 23px;
+      }
+      #login-v2 #login-v2-form-wrapper .btn-blue-01 {
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #fff;
+          background-color: #039be5;
+          border-radius: 2px;
+          box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+          padding: 6px 18px;
+          margin-top: 10px;
+      }
+      #login-v2 #login-v2-form-wrapper .btn-blue-01:hover {
+          background-color: #0192d9;
+      }
+        #login-v2 #login-v2-form-wrapper #login-v2-form form md-checkbox {
+          margin: 0; }
+        #login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password {
+          font-size: 13px;
+          margin-top: 8px; }
+          #login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password .remember-me {
+            margin-bottom: 16px; }
+          #login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password .forgot-password {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 16px; }
+        #login-v2 #login-v2-form-wrapper #login-v2-form form .submit-button {
+          width: 220px;
+          margin: 16px auto;
+          display: block; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .register {
+        margin: 32px auto 24px auto;
+        width: 250px;
+        font-weight: 500; }
+        #login-v2 #login-v2-form-wrapper #login-v2-form .register .text {
+          margin-right: 8px; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .separator {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 24px auto 16px auto;
+        position: relative;
+        overflow: hidden;
+        width: 100px;
+        color: rgba(0, 0, 0, 0.54); }
+        #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text {
+          display: inline-block;
+          vertical-align: baseline;
+          position: relative;
+          padding: 0 8px;
+          z-index: 9999; }
+          #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:before, #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:after {
+            content: '';
+            display: block;
+            width: 30px;
+            position: absolute;
+            top: 10px;
+            border-top: 1px solid rgba(0, 0, 0, 0.12); }
+          #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:before {
+            right: 100%; }
+          #login-v2 #login-v2-form-wrapper #login-v2-form .separator .text:after {
+            left: 100%; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google, #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook {
+        width: 192px;
+        text-transform: none;
+        color: #FFFFFF;
+        font-size: 13px; }
+        #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google md-icon, #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook md-icon {
+          color: #FFFFFF;
+          margin: 0 8px 0 0; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google {
+        background-color: #D73D32; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook {
+        background-color: #3f5c9a; }
+
+@media screen and (max-width: 600px) {
+  #login-v2 #login-v2-form-wrapper {
+    padding: 16px; }
+    #login-v2 #login-v2-form-wrapper #login-v2-form {
+      padding: 24px;
+      width: 100%; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form form .md-button {
+        width: 90%; }
+      #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.google, #login-v2 #login-v2-form-wrapper #login-v2-form .md-button.facebook {
+        width: 80%; } }
+
+#lock {
+  height: 100%;
+  background: url("/assets/images/backgrounds/march.jpg") no-repeat;
+  background-size: cover; }
+  #lock #lock-form-wrapper {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    padding: 32px; }
+    #lock #lock-form-wrapper #lock-form {
+      padding: 48px 32px 32px 32px;
+      width: 384px;
+      max-width: 384px;
+      background: #FFFFFF; }
+      #lock #lock-form-wrapper #lock-form .title {
+        margin-bottom: 8px;
+        font-size: 17px; }
+      #lock #lock-form-wrapper #lock-form .subtitle {
+        color: rgba(0, 0, 0, 0.54); }
+      #lock #lock-form-wrapper #lock-form .avatar-container {
+        position: relative;
+        margin-right: 16px; }
+        #lock #lock-form-wrapper #lock-form .avatar-container md-icon {
+          position: absolute;
+          top: -3px;
+          right: 2px; }
+      #lock #lock-form-wrapper #lock-form form {
+        width: 100%;
+        margin: 32px 0 0 0; }
+        #lock #lock-form-wrapper #lock-form form .submit-button {
+          width: 220px;
+          margin: 32px auto;
+          display: block; }
+      #lock #lock-form-wrapper #lock-form .message {
+        font-weight: 500;
+        text-align: center; }
+
+@media screen and (max-width: 960px) {
+  #lock #lock-form-wrapper {
+    padding: 16px; }
+    #lock #lock-form-wrapper #lock-form {
+      padding: 24px;
+      width: 100%; }
+      #lock #lock-form-wrapper #lock-form .subtitle {
+        text-align: center; }
+      #lock #lock-form-wrapper #lock-form .avatar-container {
+        margin-bottom: 10px; }
+      #lock #lock-form-wrapper #lock-form form .md-button {
+        width: 90%; } }
+
+#forgot-password {
+  height: 100%;
+  background: url("/assets/images/backgrounds/march.jpg") no-repeat;
+  background-size: cover; }
+  #forgot-password #forgot-password-form-wrapper {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+    padding: 32px; }
+    #forgot-password #forgot-password-form-wrapper #forgot-password-form {
+      width: 384px;
+      max-width: 384px;
+      padding: 32px;
+      text-align: center;
+      background: #FFFFFF; }
+      #forgot-password #forgot-password-form-wrapper #forgot-password-form .logo {
+        width: 128px;
+        height: 128px;
+        line-height: 128px;
+        font-size: 86px;
+        font-weight: 500;
+        margin: 32px auto;
+        color: #FFFFFF;
+        border-radius: 2px; }
+      #forgot-password #forgot-password-form-wrapper #forgot-password-form .title {
+        font-size: 17px;
+        margin: 16px 0 32px 0; }
+      #forgot-password #forgot-password-form-wrapper #forgot-password-form form {
+        width: 100%;
+        text-align: left; }
+        #forgot-password #forgot-password-form-wrapper #forgot-password-form form .submit-button {
+          width: 220px;
+          margin: 16px auto;
+          display: block; }
+      #forgot-password #forgot-password-form-wrapper #forgot-password-form .login-v2 {
+        margin: 32px auto 24px auto;
+        width: 250px;
+        font-weight: 500; }
+        #forgot-password #forgot-password-form-wrapper #forgot-password-form .login-v2 .text {
+          margin-right: 8px; }
+
+@media screen and (max-width: 600px) {
+  #forgot-password #forgot-password-form-wrapper {
+    padding: 16px; }
+    #forgot-password #forgot-password-form-wrapper #forgot-password-form {
+      padding: 24px;
+      width: 100%; }
+      #forgot-password #forgot-password-form-wrapper #forgot-password-form form .md-button {
+        width: 90%; } }
+

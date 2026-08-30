@@ -1,0 +1,206 @@
+<!--/***********************************************************************
+   Program Name             :ServiceCompanyEmployeeCreate.html
+   Purpose                  : Html file for ServiceCompanyEmployee
+   Requirement ID           :
+   Creation Date            : 01-03-2017
+   Created By               : Anuja
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
+    <div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+
+        <!--<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">-->
+        <!-- HEADER -->
+        <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+            <!-- APP TITLE -->
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')"
+                           aria-label="Toggle sidenav" translate-attr-aria-label="CITY.TOGGLE_SIDENAV">
+                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                </md-button>
+
+                <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-account" class="s24"></md-icon>
+                    </span>
+                    <span class="logo-text" ng-if="!vm.isUpdate" class="title" translate="SERVICECOMPANYEMPLOYEE.NEW_SERVICECOMPANYEMPLOYEE">New Service Company Employee</span>
+                    <span class="logo-text" ng-if="vm.isUpdate" class="title" translate="SERVICECOMPANYEMPLOYEE.UPDATE_SERVICECOMPANYEMPLOYEE">Update Service Company Employee</span>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+        <!-- SELECTED BAR -->
+        <div ng-show="vm.selectedSkills.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+             layout="row" layout-align="start center">
+
+            <div class="close-button-wrapper" ng-click="vm.selectedSkills =[]">
+                <md-button layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                    <span translate="SERVICECOMPANYEMPLOYEE.BACK">Back</span>
+                </md-button>
+            </div>
+
+        </div>
+        <!-- / SELECTED BAR -->
+        <!-- CONTENT -->
+
+        <md-content layout-padding>
+
+            <form name="employeeForm" class="md-inline-form" novalidate>
+
+                <div layout="row" layout-gt-sm="row" flex>
+
+                    <md-content flex layout-padding>
+
+                        <div class="form-wrapper md-whiteframe-1dp" flex="60">
+
+                            <div layout-gt-xs="row">
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+
+
+                                  <label translate="SERVICECOMPANYEMPLOYEE.FIRST_NAME">First Name </label>
+                                    <md-icon md-font-icon="icon-account-box" style="font-size: 18px"></md-icon>
+                                    <input name="firstName" ng-model="vm.employee.firstName" ng-remote-method="GET" type="text" ng-required="true" ng-remote-validate="{{vm.pageUrl}}ServiceCompanyEmployee/IsUniqueName" dummy="{{vm.dummynameValue}}" md-autofocus only-alphabets>
+
+                                    <div ng-messages="employeeForm.firstName.$error">
+                                        <div ng-message="ngRemoteValidate"><span translate="SERVICECOMPANYEMPLOYEE.EMPLOYEE_NAME_ALREADY_EXIST">Employee Name Already Exist</span></div>
+                                        <div ng-message="required"><span translate="SERVICECOMPANYEMPLOYEE.EMPLOYEE_NAME_REQUIRED">Employee Name Required</span></div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.LAST_NAME">Last Name </label>
+
+
+                                    <md-icon md-font-icon="icon-account-box" style="font-size: 18px"></md-icon>
+                                    <input name="name" ng-model="vm.employee.lastName" ng-remote-method="GET" type="text" only-alphabets>
+
+                                </md-input-container>
+                            </div>
+
+
+                            <div layout="row" ng-if="vm.loggedInCompanyUserType===2">
+                                <md-input-container class="md-block mr-20" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.DESIGNATION">Designation</label>
+
+
+                                    <md-icon md-font-icon="icon-briefcase" style="font-size: 18px"></md-icon>
+                                    <input name="name" ng-model="vm.employee.designation" ng-remote-method="GET" type="text">
+
+                                </md-input-container>
+                            </div>
+                            <div layout="row" ng-if="vm.loggedInCompanyUserType===2">
+
+                                <div class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <md-checkbox md-no-ink aria-label="Checkbox No Ink" ng-model="vm.employee.isGlobalStaff" class="md-primary">
+                                        Is global staff
+                                    </md-checkbox>
+                                </div>
+
+
+                                <md-input-container ng-if="!vm.employee.isGlobalStaff" class="md-block mr-20" flex="50" flex-gt-xs ng-init="vm.getAllBranch() ">
+                                    <label>Branch</label>
+                                    <md-icon md-font-icon="icon-city" style="font-size: 18px"></md-icon>
+                                    <md-select ng-model="vm.employee.branchId" name="branchId" ng-required="!vm.employee.isGlobalStaff">
+                                        <md-option ng-repeat="item  in  vm.branchList" value="{{item.branchId}}">
+                                            {{item.name}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="employeeForm.branchId.$error">
+                                        <div ng-message="required"><span translate="SERVICECOMPANYEMPLOYEE.BRANCH_REQUIRED">Employee Name Required</span></div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout="row" ng-if="vm.loggedInCompanyUserType===3">
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.DESIGNATION">Designation</label>
+                                    <md-icon md-font-icon="icon-briefcase" style="font-size: 18px"></md-icon>
+                                    <input name="name" ng-model="vm.employee.designation" ng-remote-method="GET" type="text">
+
+                                </md-input-container>
+
+                                <md-input-container ng-if="!vm.employee.isGlobalStaff" class="md-block mr-20" flex="50" flex-gt-xs ng-init="vm.getAllBranch() ">
+                                    <label>Branch</label>
+                                    <md-icon md-font-icon="icon-city" style="font-size: 18px"></md-icon>
+                                    <md-select ng-model="vm.employee.branchId" name="branchId" ng-required="!vm.employee.isGlobalStaff">
+                                        <md-option ng-repeat="item  in  vm.branchList" value="{{item.branchId}}">
+                                            {{item.name}}
+                                        </md-option>
+                                    </md-select>
+                                    <div ng-messages="employeeForm.branchId.$error">
+                                        <div ng-message="required"><span translate="SERVICECOMPANYEMPLOYEE.BRANCH_REQUIRED">Employee Name Required</span></div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <h3>
+                                <b>Contact Details</b>
+                            </h3>
+                            <div layout-gt-xs="row">
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.MOBILE_NUMBER">Mobile Number</label>
+                                    <md-icon md-font-icon="icon-cellphone-iphone" class="city" style="font-size: 18px"></md-icon>
+
+                                    <input name="mobile" placeholder="0XX XX XXX XX" pattern="[0]{1}[0-9]{9}"maxlength="10" minlength="10" ng-model="vm.employee.contactDto.mobileNumber" type="text" ng-required="true" allow-only-numbers>
+                                    <div ng-messages="employeeForm.mobile.$error">
+                                        <div ng-message="required"><span translate="SERVICECOMPANYEMPLOYEE.MOBILE_NUMBER_REQUIRED">Mobile Number Required</span></div>
+                                        <div ng-message="minlength"><span translate="SERVICECOMPANYEMPLOYEE.INVALID_NUMBER"> Invalid number; must be ten digits</span></div>
+                                        <div ng-message="pattern"><span> Number must be start with 0 and followed by 9 digits</span></div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.EMAIL">Email</label>
+                                    <md-icon md-font-icon="icon-email" class="city" style="font-size: 18px"></md-icon>
+                                    <input name="emailAddress" ng-model="vm.employee.contactDto.emailAddress" type="email" md-autofocus>
+                                    <div ng-messages="employeeForm.emailAddress.$error" role="alert">
+                                        <div ng-message="email" translate="SERVICECOMPANYEMPLOYEE.INVALID_EMAIL"><span>Invalid Email</span></div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <div layout-gt-xs="row">
+                                <md-input-container class="md-block mr-20" flex="50" flex-gt-xs>
+                                    <label translate="SERVICECOMPANYEMPLOYEE.LAND_LINENUMBER">Land Line Number</label>
+
+
+                                    <md-icon md-font-icon=" icon-deskphone " style="font-size: 18px"></md-icon>
+                                    <input placeholder="0X XX XX XXX" maxlength="9" minlength="9" name="landLine" ng-model="vm.employee.contactDto.landLineNumber" type="text" md-autofocus allow-only-numbers>
+                                    <div ng-messages="employeeForm.landLine.$error">
+
+                                      <div ng-message="minlength"><span > Invalid number; must be nine digits</span></div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <md-dialog-actions layout="row" layout-align="end end">
+                                <div layout="row" layout-align="start center">
+                                    <md-button type="submit" ng-click="vm.updateServiceCompanyEmployee()" ng-show="vm.isUpdate"
+                                               class="send-button md-accent md-raised"
+                                               ng-disabled="employeeForm.$invalid"
+                                               aria-label="SAVE" translate="SERVICECOMPANYEMPLOYEE.UPDATE_SERVICECOMPANYEMPLOYEE" translate-attr-aria-label="BRANCH.UPDATE_BRANCH">
+                                        UPDATE
+                                    </md-button>
+
+                                    <md-button type="submit" ng-click="vm.saveServiceCompanyEmployee()" ng-show="!vm.isUpdate"
+                                               class="send-button md-accent md-raised"
+                                               ng-disabled="employeeForm.$invalid || employeeForm.$pristine"
+                                               aria-label="Add Task"
+                                               translate="SERVICECOMPANYEMPLOYEE.ADD_SERVICECOMPANYEMPLOYEE">
+                                        ADD
+                                    </md-button>
+                                    <md-button type="button" ng-if="!vm.baseBranch" ng-click="vm.formClose()" class="md-warn md-raised" aria-label="Cancel" translate="SERVICECOMPANYEMPLOYEE.CANCEL" translate-attr-aria-label="SERVICECOMPANYEMPLOYEE.CANCEL">
+                                        CANCEL
+                                    </md-button>
+                                </div>
+                            </md-dialog-actions>
+                            <!-- / DIALOG ACTIONS -->
+                        </div>
+                    </md-content>
+                </div>
+            </form>
+        </md-content>
+
+                        <!-- / CONTENT -->
+                    </div>
+                </div>

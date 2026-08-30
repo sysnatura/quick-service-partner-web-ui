@@ -1,0 +1,113 @@
+
+<!--/***********************************************************************
+ Program Name             : companyUser-dialog.html
+ Purpose                  :
+ Creation Date            : 05-07-2017
+ Created By               : Anuja
+ Last Modified By         :
+ Modification Date        :
+ Change Request/Bug Nos   :
+/***********************************************************************/-->
+
+
+<!-- DIALOG -->
+<md-dialog flex="40" aria-label="New Task">
+  
+    <!-- DIALOG TOOLBAR -->
+    <md-toolbar class=" md-accent " layout="column">
+
+        <!-- TOOLBAR TOP -->
+        <div class="md-toolbar-tools md-toolbar-tools-top" layout="row" layout-align="space-between center">
+            <span class="title">{{vm.title}}</span>
+            <md-button class="md-icon-button" ng-click="vm.closeDialog()()" aria-label="Close dialog">
+                <md-icon md-font-icon="icon-close"></md-icon>
+            </md-button>
+        </div>
+
+        <md-content layout-padding>
+            <div>
+                <form name="vm.companyUserForm" class="md-inline-form" novalidate>
+                    <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>Name</label>
+                        <input name="name" ng-model="vm.companyUser.name" type="text" ng-required="true" ng-remote-method="GET" md-autofocus>
+                        <div ng-messages="vm.companyUserForm.name.$error">
+                            <div ng-message="required"><span>Name Required</span></div>
+                        </div>
+                    </md-input-container>
+                        </div>
+                <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs>
+                        <label>User Name</label>
+                        <input name="userName" ng-model="vm.companyUser.username" type="text" ng-required="true" ng-disabled="!vm.isSave" objectvalue="{{vm.companyUser}}" ng-remote-method="POST" ng-remote-validate="{{vm.pageUrl}}CompanyUsers/IsUnique" dummy="{{vm.dummynameValue}}">
+                        <div ng-messages="vm.companyUserForm.userName.$error">
+                            <div ng-message="required"><span>Username Required</span></div>
+                            <div ng-message="ngRemoteValidate"><span>Username Already Exist</span></div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex-gt-xs >
+                        <label>Password</label>
+                        <input name="password" ng-model="vm.companyUser.password" type="password" ng-required="true" ng-minlength="8" ng-maxlength="20" ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/">
+                        <span ng-show="vm.companyUserForm.password.$error.required && vm.companyUserForm.password.$dirty" style="color: brown">Password Required</span>
+                        <span ng-show="!vm.companyUserForm.password.$error.required && (vm.companyUserForm.password.$error.minlength || vm.companyUserForm.password.$error.maxlength) && vm.companyUserForm.password.$dirty" style="color: brown">Passwords must be between 8 and 20 characters.</span>
+                        <span ng-show="!vm.companyUserForm.password.$error.required && !vm.companyUserForm.password.$error.minlength && !vm.companyUserForm.password.$error.maxlength && vm.companyUserForm.password.$error.pattern && vm.companyUserForm.password.$dirty" style="color: brown">Must contain one lower &amp; uppercase letter, and one non-alpha character (a number or a symbol.)</span>
+                        <span ng-messages="vm.companyUserForm.password.$error" role="alert">
+                            <span ng-message="required"><span>Password Required</span></span>
+                        </span>
+                    </md-input-container>
+                </div>
+                    <div layout-gt-xs="row">
+                        <md-input-container class="md-block" flex-gt-xs >
+                            <label>Retype Password</label>
+                            <input name="rpassword" ng-model="vm.companyUser.rpassword" type="password" ng-required="true" match="vm.companyUser.password">
+                            <div ng-messages="vm.companyUserForm.rpassword.$error">
+                                <div ng-message="required"><span>Please retype password</span></div>
+                            </div>
+                            <div ng-messages="vm.companyUserForm.rpassword.$error.match" ng-show="!vm.companyUserForm.rpassword.$pristine" role="alert">
+                                <div ng-show="vm.companyUserForm.rpassword.$error.match"><span>Passwords don't match!!</span></div>
+                            </div>
+                        </md-input-container>
+                    </div>                
+
+                    <div layout-gt-sm="row">
+
+
+                    </div>
+
+                    <md-dialog-actions layout="row" layout-align="end end">
+                        <div layout="row" layout-align="start center">
+                            <md-button type="submit" ng-if="!vm.isSave" ng-click="vm.updateCompanyUser()"
+                                       class="send-button md-accent md-raised"
+                                       ng-disabled="vm.companyUserForm.$invalid  "
+                                       aria-label="SAVE">
+                                UPDATE
+                            </md-button>
+
+                            <md-button type="submit" ng-if="vm.isSave" ng-click="vm.saveCompanyUser()"
+                                       class="send-button md-accent md-raised"
+                                       ng-disabled="vm.companyUserForm.$invalid "
+                                       aria-label="Add Task">
+                                ADD USER
+                            </md-button>
+                            <md-button type="button" ng-click="vm.closeDialog()"
+                                       class="md-warn md-raised"
+                                       aria-label="Cancel">
+                                CANCEL
+                            </md-button>
+                        </div>
+
+
+                    </md-dialog-actions>
+                    <!-- / DIALOG ACTIONS -->
+                </form>
+            </div>
+
+
+        </md-content>
+
+    </md-toolbar>
+</md-dialog>
+<!-- / DIALOG -->
+

@@ -1,0 +1,68 @@
+<div class="todo-items">
+    <div class="todo-item">
+        <table class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+            <thead>
+                <tr>
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title">#</span>
+                        </div>
+                    </th>
+
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title" translate="SO.ORDER">Order</span>
+                        </div>
+                    </th>
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title" translate="SO.DATE">Date</span>
+                        </div>
+                    </th>
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title" translate="SO.CUSTOMER">Customer</span>
+                        </div>
+                    </th>
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title" translate="SO.SERVICE_DATE">Service Date</span>
+                        </div>
+                    </th>
+                    <th class="secondary-text">
+                        <div class="table-header">
+                            <span class="column-title" translate="SO.ALTERNATE_DATE">Alternate Date</span>
+                        </div>
+                    </th>
+                    <th class="secondary-text">
+                        <span class="column-title" translate="SO.OPTIONS">Options</span>
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="order in vm.orderHistory | filter: vm.search" ng-click="">
+                    <td>{{$index + 1}}</td>
+                    <td>{{order.serviceOrderDto.orderNo}}</td>
+                    <td>{{order.serviceOrderDto.createdOn | date}}</td>
+                    <td>{{order.serviceOrderDto.customerDto.customerName}}</td>
+                    <td>{{order.serviceOrderDto.serviceDate | date}}</td>
+                    <td>{{order.serviceOrderDto.alternativeServiceDate | date}}</td>
+                    <td>
+                        <md-button class="edit-button md-icon-button" ng-click="vm.orderDetail($event, order)"
+                                   aria-label="View" translate translate-attr-label="SO.VIEW">
+                            <md-tooltip><span translate="SO.VIEW_ORDER">View Order</span></md-tooltip>
+                            <md-icon md-font-icon="icon-tab"></md-icon>
+                        </md-button>
+                        <!--<md-button class="md-icon-button" ng-click="vm.processOrder($event,order)"
+                               aria-label="Process" translate translate-attr-label="SO.PROCESS" md-no-ink>
+                        <md-tooltip><span translate="SO.PROCESS">Process</span></md-tooltip>
+                        <md-icon md-font-icon="icon-view-stream"></md-icon>
+                    </md-button>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

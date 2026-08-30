@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+
+namespace Sysnatura.HMSAS.ServiceCompanay.WebUI
+{
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        void Application_PreSendRequestHeaders(Object sender, EventArgs e)
+        {
+            Response.Headers.Set("Access-Control-Allow-Origin", "*");
+            Response.Headers.Set("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization,BearerCompany");
+            Response.Headers.Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        }
+        protected void Application_BeginRequest()
+        {
+            //commented by nevin
+            //    to fix cors isue
+            //    07/07/22
+            //if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
+            //{
+            //    Response.Flush();
+            //}
+            if (Request.HttpMethod == "OPTIONS")
+            {
+                Response.Flush();
+            }
+
+        }
+    }
+}

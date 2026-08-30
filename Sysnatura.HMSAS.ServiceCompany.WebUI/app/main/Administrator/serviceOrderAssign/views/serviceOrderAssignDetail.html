@@ -1,0 +1,42 @@
+﻿<!--/***********************************************************************
+   Program Name             : serviceOrderAssignDetail.html
+   Purpose                  : 
+   Requirement ID           :
+   Creation Date            : 28-2-20167
+   Created By               : Finson
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+
+<div id="contacts" class="page-layout simple left-sidenav inner-sidenav" ng-if="isReady">
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between center" ng-init="vm.initProcess()">
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+            <div class="logo" layout="row" layout-align="start center">                
+                <span class="logo-text" translate="SO.SERVICE_ORDER_DETAILS">Service Order Details</span>
+            </div>
+            <span class="ml-16 text-boxed blue-bg white-fg ng-binding" ng-if="vm.serviceOrderAssign.orderAssignStatusText">{{vm.serviceOrderAssign.orderAssignStatusText}}</span>
+        </div>
+        <!-- / APP TITLE -->
+        <!-- BACK -->
+        <div class="search-input-wrapper" layout="row" layout-align="start center">           
+            <md-input-container md-no-float class="m-0">
+                <md-button class="goto-orders-button md-icon-button" aria-label="Go To Orders"
+                           ng-click="vm.showIndex()"
+                           translate translate-attr-aria-label="SO.BACK">
+                    <md-tooltip><span translate="SO.BACK">Back</span></md-tooltip>
+                    <md-icon md-font-icon="icon-arrow-left"></md-icon>
+                </md-button>
+            </md-input-container>
+        </div>
+        <!-- / BACK -->
+    </div>
+    <!-- / HEADER -->
+    <!-- WIDGETS -->
+    <div id="widgets">
+        <div ng-include="'app/main/Administrator/serviceOrderAssign/views/tabs/details/details.html'"></div>
+    </div>
+    <!-- WIDGETS -->
+</div>

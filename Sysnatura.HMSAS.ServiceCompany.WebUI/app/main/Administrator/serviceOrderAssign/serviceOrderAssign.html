@@ -1,0 +1,326 @@
+<!--/***********************************************************************
+ Program Name             : ServiceOrderAssign.html
+ Purpose                  :
+ Creation Date            : 28-02-2017
+ Created By               : Finson
+ Last Modified By         :
+ Modification Date        :
+ Change Request/Bug Nos   :
+/***********************************************************************/-->
+
+<div id="dashboard-project" class="page-layout simple right-sidenav" layout="row" ng-if="isReady">
+    <!-- CENTER -->
+    <div class="center" flex ms-scrollactual ng-init="vm.initProcess()">
+        <!-- HEADER -->
+        <!--<div class="header md-accent-bg" layout="column" layout-align="space-between">
+            <div layout="row" layout-align="space-between">
+                <div>
+                    <span class="md-display-1 font-weight-300">Service Order Details</span>
+                </div>
+                <div class="toolbar">
+                    <md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('sidenav')" hide-gt-md
+                               aria-label="Toggle sidenav">
+                        <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <div layout="row">
+            </div>
+        </div>-->
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+        <div class="content">
+            <md-tabs md-dynamic-height>
+                <md-tab label="Service Orders" ng-click="vm.getAllServiceOrders()" ng-init="vm.getAllServiceOrders()" ng-if="vm.head">
+                    <!-- WIDGET GROUP -->
+                    <div class="widget-group" layout="row" flex="100" layout-wrap>
+                        <!-- WIDGET GROUP -->
+                        <div class="widget-group" layout="row" flex="100" layout-wrap>
+                            <!-- WIDGET 5 -->
+                            <ms-widget layout="row" flex="100">
+                                <!-- Front -->
+                                <!--start my service order table-->
+                                <ms-widget-front class="white-bg md-whiteframe-12dp">
+                                    <div class="ph-16 pv-8 border-bottom layout-wrap ng-scope layout-align-space-between-center layout-row" layout="row" layout-align="space-between center" layout-wrap="">
+                                        <div class="pv-8 h3 ng-binding" translate="SO.SERVICE_ORDERS">Service Orders</div>
+                                    </div>
+                                    <table id="tblserviceOrders" class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+                                        <thead>
+                                            <tr>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title">#</span>
+                                                    </div>
+                                                </th>
+
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.ORDER">Order</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.DATE">Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.CUSTOMER">Customer</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.SERVICE_DATE">Service Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.ALTERNATE_DATE">Alternate Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <span class="column-title" translate="SO.OPTIONS">Options</span>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr ng-repeat="sOrder in vm.serviceOrders | filter: vm.search">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{sOrder.orderNo}}</td>
+                                                <td>{{sOrder.createdOn | date}}</td>
+                                                <td>{{sOrder.customerDto.customerName}}</td>
+                                                <td>{{sOrder.serviceDate | date}}</td>
+                                                <td>{{sOrder.alternativeServiceDate | date}}</td>
+                                                <td>
+                                                    <md-button class="edit-button md-icon-button" ng-click="vm.orderDetail($event, sOrder)"
+                                                               aria-label="View" translate translate-attr-label="SO.VIEW">
+                                                        <md-tooltip><span translate="SO.VIEW_ORDER">View Order</span></md-tooltip>
+                                                        <md-icon md-font-icon="icon-tab"></md-icon>
+                                                    </md-button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ms-widget-front>
+                                <!-- / Front -->
+                                <!--end my service order table-->
+                            </ms-widget>
+
+                            <!-- / WIDGET 5 -->
+                        </div>
+                        <!-- / WIDGET GROUP -->
+                        <!-- WIDGET GROUP -->
+                        <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                        </div>
+                    </div>
+                    <!-- / WIDGET GROUP -->
+                </md-tab>
+                <md-tab label="My Orders" ng-click="vm.getAllNewOrders()" ng-init="vm.getAllNewOrders()">
+                    <!-- WIDGET GROUP -->
+                    <div class="widget-group" layout="row" flex="100" layout-wrap>
+                        <!-- WIDGET 1 -->
+                        <ms-widget flippable="true" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25" ng-click="vm.getAllNewOrders()" class="style-101">
+                            <!-- Front -->
+                            <ms-widget-front ng-mouseover="vm.classSelect=1" ng-class="vm.classSelect==1 || vm.widgetSelect==1 ? 'md-white-bg' : ''" ng-mouseleave="vm.classSelect=0">
+                                <div class="p-16 h-55 heading-bg-1" layout="row" layout-align="space-between center">
+                                    <div class="simplified h3" translate="SO.NEW">New</div>
+                                </div>
+                                <div class="pt-8 pb-32 ph-16" layout="column" layout-align="center center">
+                                    <div class="light-blue-fg font-size-72 line-height-72">
+                                        {{vm.serviceOrderCountList.newOrderCount}} <!--/// count-->
+                                    </div>
+                                    <div class="h3 secondary-text font-weight-500" translate="SO.NEW_ORDERS">New Orders</div>
+                                </div>
+
+                            </ms-widget-front>
+                            <!-- / Front -->
+                        </ms-widget>
+                        <!-- / WIDGET 1 -->
+                        <!-- WIDGET 2 -->
+                        <ms-widget flippable="true" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25" ng-click="vm.getAllAcceptedOrders()" class="style-101">
+                            <!-- Front -->
+                            <ms-widget-front ng-mouseover="vm.classSelect=2" ng-class="vm.classSelect==2 || vm.widgetSelect==2 ? 'md-white-bg' : ''" ng-mouseleave="vm.classSelect=0">
+                                <div class="p-16 h-55 heading-bg-1" layout="row" layout-align="space-between center">
+                                    <div class="h3" translate="SO.IN_PROGRESS">In progress</div>
+
+                                </div>
+                                <div class="pt-8 pb-32 ph-16" layout="column" layout-align="center center">
+                                    <div class="orange-fg font-size-72 line-height-72">
+                                        {{vm.serviceOrderCountList.acceptedOrderCount}}
+                                    </div>
+                                    <div class="h3 secondary-text font-weight-500" translate="SO.ACCEPTED_ORDERS">Accepted Orders</div>
+                                </div>
+
+                            </ms-widget-front>
+                            <!-- / Front -->
+                        </ms-widget>
+                        <!-- / WIDGET 2 -->
+                        <!-- WIDGET 3 -->
+                        <ms-widget flippable="true" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25" ng-click="vm.getAllTimedOutOrders()" class="style-101">
+                            <!-- Front -->
+                            <ms-widget-front ng-mouseover="vm.classSelect=3" ng-class="vm.classSelect==3 || vm.widgetSelect==3 ? 'md-white-bg' : ''" ng-mouseleave="vm.classSelect=0">
+                                <div class="p-16 h-55 heading-bg-1" layout="row" layout-align="space-between center">
+                                    <div class="h3" translate="SO.TIMED_OUT">Timed out</div>
+                                </div>
+                                <div class="pt-8 pb-32 ph-16" layout="column" layout-align="center center">
+                                    <div class="blue-grey-fg font-size-72 line-height-72">
+                                        {{vm.serviceOrderCountList.timeoutOrderCount}}
+                                    </div>
+                                    <div class="h3 secondary-text font-weight-500" translate="SO.TIMED_OUT_ORDERS">Timed out Orders</div>
+                                </div>
+
+                            </ms-widget-front>
+                            <!-- / Front -->
+                        </ms-widget>
+                        <!-- / WIDGET 3 -->
+                        <!-- WIDGET 4 -->
+                        <ms-widget flippable="true" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25" ng-click="vm.getAllRejectedOrders()" class="style-101">
+                            <!-- Front -->
+                            <ms-widget-front ng-mouseover="vm.classSelect=4" ng-class="vm.classSelect==4 || vm.widgetSelect==4 ? 'md-white-bg' : ''" ng-mouseleave="vm.classSelect=0">
+                                <div class="p-16 h-55 heading-bg-1" layout="row" layout-align="space-between center">
+                                    <div class="h3" translate="SO.REJECTED">Rejected</div>
+                                </div>
+                                <div class="pt-8 pb-32 ph-16" layout="column" layout-align="center center">
+                                    <div class="red-fg font-size-72 line-height-72">
+                                        {{vm.serviceOrderCountList.rejectedOrderCount}}
+                                    </div>
+                                    <div class="h3 secondary-text font-weight-500" translate="SO.REJECTED_ORDERS">Rejected Orders</div>
+                                </div>
+
+                            </ms-widget-front>
+                            <!-- / Front -->
+                        </ms-widget>
+                        <!-- / WIDGET 4 -->
+                        <!-- / WIDGET GROUP -->
+                        <!-- WIDGET GROUP -->
+                        <div class="widget-group" layout="row" flex="100" layout-wrap>
+                            <!-- WIDGET 5 -->
+                            <ms-widget layout="row" flex="100">
+                                <!-- Front -->
+                                <!--start   service order table-->
+                                <ms-widget-front class="white-bg md-whiteframe-12dp">
+                                    <div class="ph-16 pv-8 border-bottom layout-wrap ng-scope layout-align-space-between-center layout-row" layout="row" layout-align="space-between center" layout-wrap="">
+                                        <div class="pv-8 h3 ng-binding">{{vm.dataTableTitle}}</div>
+                                    </div>
+                                    <table id="tblMyOrders" class="dataTable row-border hover" datatable="ng" dt-options="vm.dtOptions">
+                                        <thead>
+                                            <tr>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title">#</span>
+                                                    </div>
+                                                </th>
+
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.ORDER">Order</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.DATE">Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.CUSTOMER">Customer</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.SERVICE_DATE">Service Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <div class="table-header">
+                                                        <span class="column-title" translate="SO.ALTERNATE_DATE">Alternate Date</span>
+                                                    </div>
+                                                </th>
+                                                <th class="secondary-text">
+                                                    <span class="column-title" translate="SO.OPTIONS">Options</span>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr ng-repeat="order in vm.myServiceOrders | filter: vm.search">
+                                                <td>{{$index + 1}}</td>
+                                                <td>{{order.serviceOrderDto.orderNo}}</td>
+                                                <td>{{order.serviceOrderDto.createdOn | date}}</td>
+                                                <td>{{order.serviceOrderDto.customerDto.customerName}}</td>
+                                                <td>{{order.serviceOrderDto.serviceDate | date}}</td>
+                                                <td>{{order.serviceOrderDto.alternativeServiceDate | date}}</td>
+                                                <td>
+                                                    <md-button class="edit-button md-icon-button" ng-click="vm.myOrderDetail($event, order)"
+                                                               aria-label="View" translate translate-attr-label="SO.VIEW">
+                                                        <md-tooltip><span translate="SO.VIEW_ORDER">View Order</span></md-tooltip>
+                                                        <md-icon md-font-icon="icon-tab"></md-icon>
+                                                    </md-button>
+                                                    <!--<md-button class="md-icon-button" ng-click="vm.processOrder($event,order)"
+                                               aria-label="Process" translate translate-attr-label="SO.PROCESS" md-no-ink>
+                                        <md-tooltip><span translate="SO.PROCESS">Process</span></md-tooltip>
+                                        <md-icon md-font-icon="icon-view-stream"></md-icon>
+                                    </md-button>-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </ms-widget-front>
+                                <!-- / Front -->
+                                <!--end   service order table-->
+                            </ms-widget>
+
+                            <!-- / WIDGET 5 -->
+                        </div>
+                        <!-- / WIDGET GROUP -->
+                        <!-- WIDGET GROUP -->
+                        <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                        </div>
+                    </div>
+                    <!-- / WIDGET GROUP -->
+                </md-tab >
+                <md-tab label ="History"  ng-click="vm.getAllCompletedOrders()">
+                    <div id="divHistory" class="page-layout carded left-sidenav" layout="row">
+                        <!-- LEFT SIDENAV -->
+                        <md-sidenav class="sidenav no-padding" md-is-locked-open="$mdMedia('gt-md')" md-component-id="main-sidenav"
+                                    ng-include="'/app/main/Administrator/serviceOrderAssign/views/sidenavs/main/main-sidenav.html'" ms-scroll ms-sidenav-helper>
+                        </md-sidenav>
+                        <!-- / LEFT SIDENAV -->
+                        <!-- CENTER -->
+                        <div class="center" layout="column" flex>
+                            <!-- CONTENT CARD -->
+                            <div class="content-card" layout="column" flex>
+                                <!-- CONTENT TOOLBAR -->
+                                <div class="toolbar" layout="row" layout-align="space-between center">
+                                    <div layout="row" layout-align="start center">
+                                        <div class="pv-8 h3 ng-binding">{{vm.dataTableTitle}}</div>
+                                    </div>
+                                </div>
+                                <!-- / CONTENT TOOLBAR -->
+                                <!-- CONTENT -->
+                                <div class="content" layout="row" flex>
+                                    <!-- Todo list pane -->
+                                    <md-content class="todo-list-pane" flex
+                                                ng-include="'app/main/Administrator/serviceOrderAssign/views/list/list-view.html'" ms-scroll="vm.msScrollOptions">
+                                    </md-content>
+                                    <!-- / Todo list pane -->
+                                </div>
+                                <!-- / CONTENT -->
+                            </div>
+                            <!-- / CONTENT CARD-->
+                        </div>
+                        <!-- / CENTER -->
+                    </div>
+
+ 
+                </md-tab>
+        </div>
+        <!-- / CONTENT -->
+    </div>
+
+</div>

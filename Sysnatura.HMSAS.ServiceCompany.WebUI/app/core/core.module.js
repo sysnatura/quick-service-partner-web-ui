@@ -1,0 +1,29 @@
+(function ()
+{
+    'use strict';
+
+    angular
+        .module('app.core',
+            [
+                'ngAnimate',
+                'ngAria',
+                'ngCookies',
+                'ngMessages',
+                'ngResource',
+                'ngSanitize',
+                'ngMaterial',
+                'pascalprecht.translate',
+                'ui.router',
+                'blockUI',
+                'imageupload',
+                'ngMaterialDatePicker',
+                'angular.filter',
+                 'xeditable',
+                 'textAngular',
+                 'uiGmapgoogle-maps',
+                  'validation.match',
+                         'LocalStorageModule',
+                 'ngAutocomplete'
+
+            ]);
+})();

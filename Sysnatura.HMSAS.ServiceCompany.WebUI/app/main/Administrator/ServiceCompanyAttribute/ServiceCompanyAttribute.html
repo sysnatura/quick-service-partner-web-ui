@@ -1,0 +1,211 @@
+<!--/***********************************************************************
+   Program Name             : Company Services.html
+   Purpose                  : Html file for Company Services
+   Requirement ID           :
+   Creation Date            : 01-03-2017
+   Created By               : Suhail
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column" ng-init="vm.getAllCountries()">
+    <div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+
+        <!--<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">-->
+        <!-- HEADER -->
+        <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+            <!-- APP TITLE -->
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')"
+                           aria-label="Toggle sidenav">
+                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                </md-button>
+
+                <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-cog" class="s24"></md-icon>
+                    </span>
+                    <span class="logo-text" > Company Services</span>
+                  
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+        <!-- SELECTED BAR -->
+        <div ng-show="vm.selectedSkills.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+             layout="row" layout-align="start center">
+
+            <div class="close-button-wrapper" ng-click="">
+                <md-button layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                    <span>Back</span>
+                </md-button>
+            </div>
+
+        </div>
+        <!-- / SELECTED BAR -->
+        <!-- CONTENT -->
+
+        <md-content layout-padding>
+
+            <form name="submoduleForm" class="md-inline-form" novalidate>
+
+                <div layout="row" layout-gt-sm="row" flex>
+
+                    <md-content flex layout-padding>
+                        <div layout="row">
+                            <md-input-container class="md-block" flex="40" ng-init="vm.BranchByUser()">
+                                <label>Branch(required)</label>
+                                <md-select ng-model="vm.serviceCompanyAttribute.branchId" name="module" ng-required="true" ng-change="vm.changeBranch()">
+                                    <md-option ng-repeat="item  in  vm.branchList" value="{{item.branchId}}">
+                                        {{item.name}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="submoduleForm.module.$error" role="alert">
+                                    <div ng-message="required"><span>Please select Module</span></div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex="40" ng-init="vm.getAllModules()" >
+                                <label>Module(required)</label>
+                                <md-select ng-model="vm.serviceCompanyAttribute.serviceCompanyModuleId" name="module" ng-required="true"  ng-change="vm.getAllAttribute(vm.serviceCompanyAttribute.serviceCompanyModuleId)">
+                                    <md-option ng-repeat="item  in  vm.moduleList" value="{{item.serviceCompanyModuleId}}">
+                                        {{item.name}}
+                                    </md-option>
+                                </md-select>
+                                <div ng-messages="submoduleForm.module.$error" role="alert">
+                                    <div ng-message="required"><span>Please select Module</span></div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                   
+              
+                        <div class="form-wrapper md-whiteframe-1dp flex" flex="100" ng-show="vm.isVisible">
+
+                            <div class="form-title text-center" ng-if="vm.attributeList.length!==0"><span>Services Offered</span></div>
+                            <div class="form-title text-center" ng-if="vm.attributeList.length===0"><span>No Services Offered</span></div>
+                            <div layout="row" flex="100" class="scrollable">
+
+                                <md-input-container class="md-block m-0" flex="100" flex-gt-xs="10" ng-if="vm.attributeList.length!==0">
+
+                                    <md-checkbox aria-label="Select All"
+                                                 ng-checked="isCheckedd()"
+                                                 md-indeterminate="isIndeterminate()"
+                                                 ng-click="toggleAll()">
+                                        <span ng-if="isCheckedd()">Unselect All</span>
+                                        <span ng-if="!isCheckedd()">Select All</span>
+                                    </md-checkbox>
+
+                                </md-input-container>
+
+
+
+
+                                <div class="content scrollable" layout="row"ng-repeat="item in vm.attributeList">
+                                    <!-- CONTENT -->
+                                    <div class="content scrollable" flex="100">
+
+                                        <!-- WIDGET GROUP -->
+                                        <div class="widget-group content scrollable" layout="row" flex="100" layout-wrap>
+
+                                            <ms-widget layout="row" flex="100" flex-gt-xs="100" flex-gt-md="100">
+
+                                                <!-- Front -->
+                                                <ms-widget-front class="white-bg">
+
+
+                                                    <div layout-align="center center" flex="100">
+                                                        <div class="name" layout-align="start-left" layout="row">
+                                                            <md-checkbox ng-model="item.isChecked" style="margin-left: 30px; margin-right: 20px;" ng-checked="exists(item, selected);" ng-click="toggle(item, selected)">
+
+                                                            </md-checkbox>
+
+                                                            <div class="flex-30 p-10" layout-align="start-center" style="margin-left: 20px; margin-right: 20px;">
+                                                                <img class="avatar" ng-src="{{vm.imageUrl}}{{item.imagePath}}" layout-align="center-center">
+                                                                <div class="h3 blue-grey-500-fg secondary-text font-weight-900">{{item.name}}</div>
+                                                                <div class="h3 black-500-fg secondary-text font-weight-300">{{item.description}}</div>
+
+                                                            </div>
+
+                                                            <div class="name pt-20" layout="row" flex="70">
+
+                                                                <ng-form name="submForm" flex="100">
+                                                                    <md-input-container flex="100" class="mr-10 mb-0">
+                                                                        <label>Min Rate</label>
+                                                                        <input name="minRate" type="number" ng-required="item.isChecked" ng-disabled="!item.isChecked" min="{{item.minValue}}" ng-model="item.minCostValue" ></input>
+                                                                        <div ng-messages="submForm.minRate.$error" role="alert">
+                                                                            <div ng-message="required"><span>Min rate is required</span></div>
+                                                                            <div ng-message="min"><span>Min rate must be non zero</span></div>
+                                                                        </div>
+                                                                    </md-input-container>
+
+                                                                    <md-input-container flex="100" class="mr-10 mb-0">
+                                                                        <label>Max Rate</label>
+                                                                        <input type="number"name="maxRate" ng-required="true" ng-disabled="!item.isChecked" min="{{item.minCostValue}}" ng-model="item.maxCostValue" >
+
+                                                                        <div ng-messages="submForm.maxRate.$error" role="alert">
+                                                                            <div ng-message="required"><span>Max rate is required</span></div>
+                                                                            <div ng-message="min"><span> Max Rate should be greater than Min Rate!</span></div>
+
+                                                                        </div>
+
+                                                                    </md-input-container>
+                                                                </ng-form>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ms-widget-front>
+                                                <!-- / Front -->
+
+
+                                            </ms-widget>
+                                        </div>
+
+
+                                    </div>
+                                    <!-- / WIDGET GROUP -->
+
+                                </div>
+                                <!-- / CONTENT -->
+
+                            </div>
+                            <!--sample div for testing-->
+                            <!--<div layout="row" flex="100">
+
+                            </div>-->
+
+                        </div>
+
+
+                    </md-content>
+                </div>
+                <md-dialog-actions layout="row" layout-align="end end" class="pull-right">
+                    <div layout="row" layout-align="start center" >
+                     
+
+                        <md-button type="submit" ng-if="vm.isSave" ng-click="vm.saveAttributes()"
+                                   class="send-button md-accent md-raised"
+                                   ng-disabled="submoduleForm.$invalid "
+                                   aria-label="Add Task">
+                            ADD
+                        </md-button>
+                        <md-button type="button" href="#"
+                                   class="md-warn md-raised"
+                                   aria-label="Cancel">
+                            CANCEL
+                        </md-button>
+                    </div>
+
+
+                </md-dialog-actions>
+            </form>
+        </md-content>
+
+        <!-- / CONTENT -->
+    </div>
+</div>
+

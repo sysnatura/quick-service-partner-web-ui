@@ -1,0 +1,139 @@
+﻿<!--/***********************************************************************
+Program Name : company.html
+Purpose :
+Creation Date :10-06-2017
+Created By : Suhail
+Modified By              : Suhail
+Modification Date        : 10-06-2017
+Last Modified By :
+Modification Date :
+Change Request/Bug Nos :
+/***********************************************************************/-->
+
+
+<div id="contacts" class="page-layout simple left-sidenav inner-sidenav" ng-init="vm.getCompanyProfile()" style="height:100%;">
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+        <!-- APP TITLE -->
+        <div layout="row" layout-align="start center">
+
+            <div class="logo" layout="row" layout-align="start center">
+                <span class="logo-icon">
+                    <md-icon md-font-icon="icon-bank" class="s24"></md-icon>
+                </span>
+                <span class="logo-text" >Company</span>
+            </div>
+        </div>
+        <!-- / APP TITLE -->
+    </div>
+
+    <!-- / HEADER -->
+
+
+    <div id="coming-soon" class="flex-scrollable pb-90" layout="column" ms-scroll>
+
+        <form  name="vm.companyForm" >
+
+            <div id="coming-soon-form-wrapper" layout="column" layout-align="center center">
+                <div id="coming-soon-form" class="md-whiteframe-4dp custom-style-01">
+                    <div class="form-wrapper custom-style-02">
+                     
+                        <div layout="row">
+                            <div flex="50" class="pr-15">
+                                <h2 class="form-title" layout-align="left">Company Details</h2>
+                                <div>
+                                    <md-content>
+                                        <div class="pos-relative" layout="row">
+                                            <span flex="50" class="title text-bold">Name</span>
+                                            <span flex="50" class="editable">: {{ vm.company.name || '--NA--' }}</span>
+                                         
+                                        </div>
+                                        <div class="pos-relative" layout="row">
+                                            <span flex="50" class="title text-bold">Address</span>
+                                            <span flex="50" class="editable">: {{ vm.company.addressDto.location || '--NA--' }}</span>
+                                           
+                                        </div>
+                                        <!--<div class="pos-relative" layout="row">
+                                            <span flex="50" class="title text-bold">Location</span>
+                                            <span flex="50" class="editable">: {{ vm.company.addressDto.location || '--NA--' }}</span>
+                                          
+                                        </div>-->
+                                        <div class="pos-relative" layout="row">
+                                            <span flex="50" class="title text-bold">GeoLocation</span>
+                                            <span flex="50" class="editable">: {{ vm.company.addressDto.geoLocation || '--NA--' }}</span>
+
+                                        </div>
+                                    </md-content>
+                                </div>
+                            </div>
+                            <!-- Mail information -->
+                            <div flex="50" class="pl-15">
+                                <h2 class="form-title" >Company General Details</h2>
+                                <div>
+                                    <div class="pos-relative" layout="row">
+                                        <span flex="50" class="title text-bold">Payment Status</span>
+
+                                        <span flex="50" class="editable">
+                                            :
+                                            <span ng-if="vm.company.serviceCompanyDto.paymentStatusEnumValue=='Free'" class="text-boxed green-bg white-fg ">Free</span>
+                                            <span ng-if="vm.company.serviceCompanyDto.paymentStatusEnumValue=='Active'" class="text-boxed blue-bg white-fg ">Active</span>
+                                            <span class="text-boxed red-bg white-fg" ng-if="vm.company.serviceCompanyDto.paymentStatusEnumValue=='Suspended'">Suspended</span>
+                                        </span>
+                                    </div>
+                                    <div class="pos-relative" layout="row">
+                                        <span flex="50" class="title text-bold">Email</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.emailAddress || '--NA--' }}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row">
+                                        <span flex="50" class="title text-bold">Mobile Number</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.mobileNumber}}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row" ng-if="vm.company.contactDto.mobileNumber1!==null"> 
+                                        <span flex="50" class="title text-bold">Mobile Number1</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.mobileNumber1}}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row" ng-if="vm.company.contactDto.mobileNumber2!==null">
+                                        <span flex="50" class="title text-bold">Mobile Number2</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.mobileNumber2  }}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row" ng-if="vm.company.contactDto.landLineNumber!==null">
+                                        <span flex="50" class="title text-bold">Landline</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.landLineNumber  }}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row" ng-if="vm.company.contactDto.landLineNumber1!==null">
+                                        <span flex="50" class="title text-bold">Landline1</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.landLineNumber1  }}</span>
+                                    </div>
+
+                                    <div class="pos-relative" layout="row" ng-if="vm.company.contactDto.landLineNumber2!==null">
+                                        <span flex="50" class="title text-bold">Landline2</span>
+
+                                        <span flex="50" class="editable">: {{ vm.company.contactDto.landLineNumber2  }}</span>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Mail information -->
+                    <!-- / DIALOG ACTIONS -->
+                   
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>

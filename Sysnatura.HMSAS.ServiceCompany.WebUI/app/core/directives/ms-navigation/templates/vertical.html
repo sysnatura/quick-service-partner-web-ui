@@ -1,0 +1,83 @@
+
+<ul ng-if="vm.global.cmpanyUsersDto.serviceCompanyDto.isRealEstate">
+    <li ng-repeat="node in vm.navigation" ms-navigation-node="node"
+        ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+        ng-include="'navigation-nested.html'" has-permission="{{node.roleTypes}}"></li> <!--has-permission="{{node.roleTypes}}"  menu hiding-->
+</ul>
+<!-- Nested navigation template for displaying  Service Company (is real estate = false)  -->
+<ul ng-if="!vm.global.cmpanyUsersDto.serviceCompanyDto.isRealEstate">
+    <li ng-repeat="node in vm.navigation" ms-navigation-node="node"
+        ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+        ng-include="'navigation-nested2.html'" has-permission="{{node.roleTypes}}" ng-if="node.title !== 'Customer List'"></li> <!--has-permission="{{node.roleTypes}}"  menu hiding-->
+</ul>
+<!-- Nested navigation template for displaying  Service Company (is real estate = false) ---------------->
+
+<!-- Nested navigation template -->
+<script type="text/ng-template" id="navigation-nested.html">
+    <div has-permission="{{node.roleTypes}}" ms-navigation-item layout="row" >  
+        
+        <!--has-permission="{{node.roleTypes}}"  menu hiding-->
+        <div class="ms-navigation-button" ng-if="!node.uisref && node.title">
+            <i class="icon s16 {{node.icon}}" ng-if="node.icon"></i>
+            <span class="title" translate="{{node.translate}}" flex>{{node.title}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge  && node.badge.content!='chat'">{{node.badge.content}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="vm.navigation.chatCount != null && node.badge && node.badge.content=='chat'">{{vm.navigation.chatCount}}</span>            <i class="icon-chevron-right s16 arrow" ng-if="vm.collapsable && vm.hasChildren"></i>
+        </div>
+
+        <a class="ms-navigation-button" ui-sref="{{node.uisref}}" ui-sref-active="active md-accent-bg"
+           ng-if="node.uisref && node.title">
+            <i class="icon s16 {{node.icon}}" ng-if="node.icon"></i>
+            <span class="title" translate="{{node.translate}}" flex>  {{node.title }}</span>
+             
+            <!--<span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge&&node.badge.content!='chat'">{{node.badge.content}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge">{{node.badge.content}}</span>-->
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge && node.badge.content!='chat'">'c{{node.badge.content}}</span>
+
+
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="vm.navigation.chatCount!= null && node.badge && node.badge.content=='chat'">{{vm.navigation.chatCount}}</span>
+
+            <i class="icon-chevron-right s16 arrow" ng-if="vm.collapsable && vm.hasChildren"></i>
+        </a>
+    </div>
+    
+
+        <ul ng-if="vm.hasChildren && !vm.isHidden()">
+            <li ng-repeat="node in node.children" ms-navigation-node="node"
+                ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+                ng-include="'navigation-nested.html'"></li>
+        </ul>
+
+</script>
+<!-- / Nested navigation template -->
+<!-- Nested navigation template for displaying  Service Company (is real estate = false)  -->
+<script type="text/ng-template" id="navigation-nested2.html">
+    <div has-permission="{{node.roleTypes}}" ms-navigation-item layout="row" >
+        <!--has-permission="{{node.roleTypes}}"  menu hiding-->     
+            <div class="ms-navigation-button" ng-if="(!node.uisref && node.title)">
+            <i class="icon s16 {{node.icon}}" ng-if="node.icon"></i>
+            <span class="title" translate="{{node.translate}}" flex>{{node.title}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge  && node.badge.content!='chat'">{{node.badge.content}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="vm.navigation.chatCount != null && node.badge && node.badge.content=='chat'">{{vm.navigation.chatCount}}</span>            <i class="icon-chevron-right s16 arrow" ng-if="vm.collapsable && vm.hasChildren"></i>
+        </div>
+        <a class="ms-navigation-button" ui-sref="{{node.uisref}}" ui-sref-active="active md-accent-bg"
+           ng-if="node.uisref && node.title">
+            <i class="icon s16 {{node.icon}}" ng-if="node.icon"></i>
+            <span class="title" translate="{{node.translate}}" flex>  {{node.title }}</span>
+            <!--<span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge&&node.badge.content!='chat'">{{node.badge.content}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge">{{node.badge.content}}</span>-->            <span class="bad
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="node.badge && node.badge.content!='chat'">'c{{node.badge.content}}</span>
+            <span class="badge white-fg" ng-style="{'background': node.badge.color}" ng-if="vm.navigation.chatCount!= null && node.badge && node.badge.content=='chat'">{{vm.navigation.chatCount}}</span>
+            <i class="icon-chevron-right s16 arrow" ng-if="vm.collapsable && vm.hasChildren"></i>
+        </a>
+    </div>
+
+
+    <ul ng-if="vm.hasChildren && !vm.isHidden()">
+        <li ng-repeat="node in node.children" ms-navigation-node="node" ng-if="node.title !== 'Customer List'"  
+            ng-class="{'collapsed': vm.collapsed, 'has-children': vm.hasChildren}"
+            ng-include="'navigation-nested2.html'"></li>
+    </ul> <!-- / displayinng Customer list for is realestate  = false -->
+
+</script>
+<!-- / Nested navigation template -->
+<!-- Nested navigation template for displaying   Service Company (is real estate = false)------------>

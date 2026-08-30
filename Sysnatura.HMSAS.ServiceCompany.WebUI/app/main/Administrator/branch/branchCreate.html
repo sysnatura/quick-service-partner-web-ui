@@ -1,0 +1,304 @@
+<!--/***********************************************************************
+   Program Name             : BranchCreate.html
+   Purpose                  : Html file for BranchCreate
+   Requirement ID           :
+   Creation Date            : 01-03-2017
+   Created By               : Amal
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column" ng-if="isReady" >
+    <div id="contacts" class="page-layout simple left-sidenav inner-sidenav" ng-init="vm.loadData()">
+
+        <!--<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">-->
+        <!-- HEADER -->
+        <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+            <!-- APP TITLE -->
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')"
+                           aria-label="Toggle sidenav">
+                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                </md-button>
+
+                <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-package" class="s24"></md-icon>
+                    </span>
+                    <span class="logo-text" ng-if="!vm.isUpdate">New Branch </span>
+                    <span class="logo-text" ng-if="vm.isUpdate">Update Branch </span>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+        <!-- SELECTED BAR -->
+        <!--<div ng-show="vm.selectedSkills.length > 0" class="selected-bar header animate-slide-down md-accent-bg"
+             layout="row" layout-align="start center">
+
+            <div class="close-button-wrapper" ng-click="vm.selectedSkills =[]">
+                <md-button layout="row" layout-align="start center">
+                    <md-icon md-font-icon="icon-arrow-left" class="mr-8"></md-icon>
+                    <span>Back</span>
+                </md-button>
+            </div>
+
+        </div>-->
+        <!-- / SELECTED BAR -->
+        <!-- CONTENT -->
+
+        <md-content layout-padding>
+
+            <form name="branchForm" class="md-inline-form" novalidate>
+
+                <div layout="row" layout-gt-sm="row" flex>
+
+                    <md-content flex layout-padding>
+
+                        <div class="form-wrapper md-whiteframe-1dp" flex="100">
+
+
+                            <div class="form-title"><span>Branch Details</span></div>
+                            <div layout="column" layout-gt-xs="row" flex>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Name (required)</label>
+
+                                    <input name="name" ng-model="vm.branch.name" type="text" ng-required="true" ng-remote-method="POST" objectvalue="{{vm.branch}}" ng-remote-validate="{{vm.pageUrl}}Branch/IsUnique" dummy="{{vm.dummynameValue}}">
+
+                                    <div ng-messages="branchForm.name.$error" role="alert">
+                                        <div ng-message="ngRemoteValidate"><span>Branch Name already exist</span></div>
+                                        <div ng-message="required"><span>Please enter service company name</span></div>
+                                    </div>
+                                </md-input-container>
+                                <div>
+                                    <md-input-container class="md-block pr-15">
+                                        <label>Branch user</label>
+                                        <div>
+                                            <md-chips ng-model="vm.selectedChip" md-autocomplete-snap ng-init="vm.getAllCompanyUsers()"
+                                                      md-transform-chip="vm.transformChip($chip)"
+                                                      md-require-match="vm.autocompleteDemoRequireMatch"
+                                                      md-on-remove="vm.onChipRemoved($chip,$index)">
+                                                <md-autocomplete ng-disabled="vm.isDisabledUser"
+                                                                 md-selected-item="vm.selectedCompanyUser"
+                                                                 md-search-text="vm.searchText"
+                                                                 md-items="item in vm.querySearchCompanyUser(vm.searchText)"
+                                                                 md-item-text="item.name"
+                                                                 md-min-length="0"
+                                                                 placeholder="Select Company User">
+                                                    <md-item-template>
+                                                        <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+                                                    </md-item-template>
+                                                    <md-not-found>
+                                                        No company User matching "{{vm.searchText}}" were found.
+                                                    </md-not-found>
+                                                </md-autocomplete>
+                                                <md-chip-template>
+                                                    <span>
+                                                        <strong>{{$chip.name}}</strong>
+                                                        <strong ng-if="vm.isUpdate">{{$chip.companyUsersDto.name}}</strong>
+                                                    </span>
+                                                </md-chip-template>
+                                            </md-chips>
+
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </div>
+
+
+                            <div layout="column" layout-gt-sm="row" flex>
+                                <!--<md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Building Number (required)</label>
+                                    <input name="houseNo" ng-model="vm.branch.addressDto.houseNo" type="text" ng-required="true" md-autofocus>
+                                    <div ng-messages="branchForm.houseNo.$error" role="alert">
+                                        <div ng-message="required"><span>Please enter house number</span></div>
+                                    </div>
+                                </md-input-container>-->
+
+                                <md-input-container flex="100" flex-gt-xs="66" class="pr-15">
+                                    <label>Address (required)</label>
+                                    <textarea name="location" maxlength="500" placeholder="Building Number, Building Name, Street Name, Floor, Apartment Number, Area" ng-model="vm.branch.addressDto.location" type="text" ng-required="true" md-autofocus></textarea>
+                                    <div ng-messages="branchForm.location.$error" role="alert">
+                                        <div ng-message="required"><span>Please enter address</span></div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Enter Geolocation</label>
+                                    <input id="txtAutoLocation" placeholder="Enter Geolocation" name="geoLocation" type="text" ng-autocomplete class="form-control" ng-model="vm.branch.addressDto.geoLocation" details="vm.locationDetails" options="vm.locationFilters" ng-required="true" ng-change="vm.onChangeInLoc()" />
+                                    <div ng-messages="branchForm.geoLocation.$error" role="alert">
+                                        <div ng-message="required"><span>Please enter geo location</span></div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                            <div layout="column" layout-gt-sm="row" flex>
+
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Mobile Number </label>
+                                    <input name="mobileNo" placeholder="0XX XX XXX XX" pattern="[0]{1}[0-9]{9}" maxlength="10" minlength="10" ng-model="vm.branch.contactDto.mobileNumber" allow-only-numbers ng-required="vm.branch.contactDto.landLineNumber == null" md-autofocus>
+                                    <div ng-messages="branchForm.mobileNo.$error" ng-show="branchForm.mobileNo.$touched" role="alert">                                        
+                                        <div ng-message="required"><span >Please enter mobile number</span></div>
+                                        <div ng-message="minlength"><span> Invalid number; must be ten digits</span></div>
+                                        <div ng-message="pattern"><span> Number must be start with 0 and followed by 9 digits</span></div>
+
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15" ng-disabled="vm.branch.contactDto.mobileNumber == null">
+                                    <label> Second Mobile Number </label>
+                                    <input name="mobileNo1" placeholder="0XX XX XXX XX" pattern="[0]{1}[0-9]{9}" maxlength="10" minlength="10" ng-model="vm.branch.contactDto.mobileNumber1" allow-only-numbers   md-autofocus>
+                                    <div ng-messages="branchForm.mobileNo1.$error" ng-show="branchForm.mobileNo1.$touched" role="alert">                                        
+                                        <div ng-message="minlength"><span> Invalid number; must be ten digits</span></div>
+                                        <div ng-message="pattern"><span> Number must be start with 0 and followed by 9 digits</span></div>
+
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15" ng-disabled="vm.branch.contactDto.mobileNumber1 == null">
+                                    <label> Third Mobile Number </label>
+                                    <input name="mobileNo2" placeholder="0XX XX XXX XX" pattern="[0]{1}[0-9]{9}" maxlength="10" minlength="10" ng-model="vm.branch.contactDto.mobileNumber2" allow-only-numbers  md-autofocus>
+                                    <div ng-messages="branchForm.mobileNo2.$error" ng-show="branchForm.mobileNo2.$touched" role="alert">                                        
+                                        <div ng-message="minlength"><span> Invalid number; must be ten digits</span></div>
+                                        <div ng-message="pattern"><span> Number must be start with 0 and followed by 9 digits</span></div>
+
+                                    </div>
+                                </md-input-container>
+
+
+                            </div>
+                            <div layout="column" layout-gt-sm="row" flex>
+
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Landline Number </label>
+                                    <input name="landLineno" ng-required="vm.branch.contactDto.mobileNumber == null" placeholder="0X XX XX XXX" maxlength="9" minlength="9" ng-model="vm.branch.contactDto.landLineNumber" allow-only-numbers type="text">
+                                    <div ng-messages="branchForm.landLineno.$error" ng-show="branchForm.landLineno.$touched" role="alert">
+                                        <div ng-message="required"><span>Please enter landline  number</span></div>
+                                        <div ng-message="minlength"><span> Invalid number; must be nine digits</span></div>
+
+                                      </div>
+                                
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15" ng-disabled="vm.branch.contactDto.landLineNumber == null">
+                                    <label> Second Landline Number </label>
+                                    <input name="landLineno1" placeholder="0X XX XX XXX" maxlength="9" minlength="9" ng-model="vm.branch.contactDto.landLineNumber1" allow-only-numbers type="text">
+                                    <div ng-messages="branchForm.landLineno1.$error" ng-show="branchForm.landLineno1.$touched" role="alert">
+                                        <div ng-message="minlength"><span> Invalid number; must be nine digits</span></div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15" ng-disabled="vm.branch.contactDto.landLineNumber1 == null">
+                                    <label>Third Landline Number </label>
+                                    <input name="landLineno2" placeholder="0X XX XX XXX" maxlength="9" minlength="9" ng-model="vm.branch.contactDto.landLineNumber2" allow-only-numbers type="text">
+                                    <div ng-messages="branchForm.landLineno2.$error" ng-show="branchForm.landLineno2.$touched" role="alert">
+                                        <div ng-message="minlength"><span> Invalid number; must be nine digits</span></div>
+                                    </div>
+                                </md-input-container>
+
+
+                            </div>
+
+                            <div layout="column" layout-gt-sm="row" flex >
+
+                                 
+                       
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Email Address (required)</label>
+                                    <input name="emailAddress" ng-model="vm.branch.contactDto.emailAddress" type="email"  md-autofocus>
+                                    <div ng-messages="branchForm.emailAddress.$error" role="alert">                                      
+                                        <div ng-message="email"><span>Invalid Email Address</span></div>
+                                    </div>
+                                </md-input-container> 
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Web Site</label>
+                                    <input name="website" ng-model="vm.branch.contactDto.website" type="text"   md-autofocus>
+
+                                </md-input-container>                            
+
+
+                            </div>
+
+                            <div layout="column" layout-gt-sm="row" flex>
+
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Country (required)</label>
+                                    <md-select ng-model="vm.branch.addressDto.countryId" name="countryName" ng-required="true" md-autofocus ng-int="vm.getAllStateByCountry(vm.branch.addressDto.countryId)" ng-disabled="true">
+                                        <md-option ng-repeat="item in  vm.countryList" value="{{item.countryId}}">{{item.name}}</md-option>
+                                    </md-select>
+                                    <div ng-messages="branchForm.countryName.$error" role="alert">
+                                        <div ng-message="required"><span>Please select country</span></div>
+                                    </div>
+                                </md-input-container>
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>Emirate (required)</label>                                    
+                                    <md-select name="stateName" ng-model="vm.branch.addressDto.stateId"
+                                               md-on-close="clearSearchTerm2()" ng-change="vm.getAllCityByState(vm.branch.addressDto.stateId)" ng-init="vm.getAllCityByState(vm.branch.addressDto.stateId)" ng-required="true">
+                                        <md-select-header class="demo-select-header">
+                                            <input ng-model="searchState"
+                                                   ng-keydown="$event.stopPropagation()"
+                                                   type="search"
+                                                   placeholder="Search for a state .."
+                                                   class="header-searchbox md-text">
+                                        </md-select-header>
+                                        <md-optgroup label="State">
+                                            <md-option value="{{item.stateId}}" ng-rep ng-repeat="item in  vm.stateList |filter:searchState">{{item.name}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                    <div ng-messages="branchForm.stateName.$error" role="alert">
+                                        <div ng-message="required"><span>Please select emirate</span></div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container flex="100" flex-gt-xs="33" class="pr-15">
+                                    <label>City (required)</label>
+                                    <md-select ng-model="vm.branch.addressDto.cityId" name="cityName"
+                                               md-on-close="clearSearchTerm3()" ng-required="true">
+                                        <md-select-header class="demo-select-header">
+                                            <input ng-model="searchCity"
+                                                   ng-keydown="$event.stopPropagation()"
+                                                   type="search"
+                                                   placeholder="Search for a city .."
+                                                   class="header-searchbox md-text">
+                                        </md-select-header>
+                                        <md-optgroup label="City">
+                                            <md-option value="{{item.cityId}}" ng-rep ng-repeat="item in  vm.cityList |filter:searchCity">{{item.name}}</md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                    <div ng-messages="branchForm.cityName.$error" role="alert">
+                                        <div ng-message="required"><span>Please select city</span></div>
+                                    </div>
+                                </md-input-container>
+
+                                
+                            </div>
+                        </div>
+                        <md-dialog-actions layout="row" layout-align="end end">
+                            <div layout="row" layout-align="start center">
+                                <md-button type="submit" ng-click="vm.updateBranch()" ng-show="vm.isUpdate"
+                                           class="send-button md-accent md-raised"
+                                           ng-disabled="branchForm.$invalid"
+                                           aria-label="SAVE">
+                                    UPDATE
+                                </md-button>
+
+                                <md-button type="submit" ng-click="vm.saveBranch()" ng-show="!vm.isUpdate"
+                                           class="send-button md-accent md-raised"
+                                           ng-disabled="branchForm.$invalid || branchForm.$pristine"
+                                           aria-label="Add Task">
+                                    ADD
+                                </md-button>
+                                <md-button type="button" ng-if="!vm.baseBranch" ng-click="vm.formClose()" class="md-warn md-raised" aria-label="Cancel">
+                                    CANCEL
+                                </md-button>
+                            </div>
+                        </md-dialog-actions>
+                        <!-- / DIALOG ACTIONS -->
+
+                    </md-content>
+                </div>
+
+            </form>
+        </md-content>
+
+        <!-- / CONTENT -->
+    </div>
+</div>

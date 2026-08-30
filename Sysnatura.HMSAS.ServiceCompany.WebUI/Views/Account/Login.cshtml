@@ -1,0 +1,153 @@
+@*@using SysBisCRM.WEBUI.Models*@
+@model Sysnatura.HMSAS.ServiceCompanay.WebUI.Common.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout=null;
+}
+@*@Styles.Render("~/Content/bootstrap")*@
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+@Styles.Render("~/Content/css")
+<head>
+    <title>
+        Partners Login - AQS
+    </title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+</head>
+@*<h2>@ViewBag.Title.</h2>*@
+@*
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Register as a new user", "Register")
+                    </p>
+                    @* Enable this once you have account confirmation enabled for password reset functionality
+                        <p>
+                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                        </p>*@
+@*}
+            </section>
+        </div>
+        <div class="col-md-4">
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>
+    </div>*@
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+
+
+@*@model Sysnatura.WFMS.BOL.Setup.UserDto
+    @{
+        ViewBag.Title = "UserLogin";
+        Layout = null;
+    }*@
+@*@Styles.Render("~/Content/css")*@
+
+
+<link href="~/bower_components/angular-material/angular-material.css" rel="stylesheet" />
+<link href="~/Content/styles/login.css" rel="stylesheet" />
+
+
+
+
+<div id="login-v2" layout="row" layout-align="start" class="ng-scope layout-align-start-stretch layout-row">
+    <div id="login-v2-form-wrapper" class="flex-scrollable" ms-scroll>
+        <div id="login-v2-form" class="md-whiteframe-8dp">
+            <div class="top-bg-11 md-accent-bg">
+                <div class="logo">
+                    <img src="../../assets/images/logos/logo-01.png">
+                </div>
+                <div class="md-accent-bg text-style-01">
+                    <span>HOME MAINTAINANCE<br>
+                    SERVICE AUTOMATION SYSTEM</span>
+                </div>
+            </div>
+            <div class="title" translate="LOGIN_V2.TITLE">Log in to Service Company Account</div>
+            <div class="description" translate="LOGIN_V2.DESCRIPTION">Enter user name & password to login</div>
+            <div class="mb-10">
+                @if (TempData["LoginMessage"] != null)
+                {
+                    <span class="text-danger"> @TempData["LoginMessage"].ToString()</span>
+                }
+            </div>
+
+            <form class="form-horizontal" action="@Url.Action("Login", "Account")" method="POST">
+
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "User Name", @required = "true" })
+                <div ng-messages="loginForm.email.$error" role="alert" multiple>
+
+                </div>
+
+                @Html.TextBoxFor(m => m.Password, new { @type = "password", @placeholder = "Password", @class = "form-control", @required = "true" })
+                <div ng-messages="loginForm.password.$error" role="alert">
+
+                </div>
+
+
+                @if (ViewData["error"] != null)
+                {
+                    <span class="text-danger"> @ViewData["error"].ToString()</span>
+                }
+                <div class="btn-group">
+                    <button id="btnSignIn" type="submit" class="btn btn-blue-01 login-btn">Sign In</button>
+                </div>
+
+                <script type="text/javascript">
+                    var dt = new Date();
+                    var os = dt.getTimezoneOffset();
+                    if (os != -240) {
+                        document.getElementById('btnSignIn').disabled = true;
+                        document.write('<br/><br/><span class="text-danger">Please set the computer system time zone to<br/>(UTC +4:00) Abu Dhabi, Muscat and reload the page.</span>');
+                    }
+                </script>
+            </form>
+            <div layout="column" layout-align="start center">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/bower_components/angular/angular.js"></script>
+<script src="~/bower_components/angular/angular.min.js"></script>
+<script src="~/bower_components/angular-aria/angular-aria.js"></script>
+<script src="~/bower_components/angular-messages/angular-messages.js"></script>
+<script src="~/bower_components/angular-material/angular-material.js"></script>
+<script src="~/bower_components/angular-animate/angular-animate.js"></script>

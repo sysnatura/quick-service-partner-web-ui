@@ -1,0 +1,7 @@
+﻿@{
+    ViewBag.Title = "Home page";
+    if (Session["loggedInServiceCompanyId"] == null)
+    {
+        Response.Redirect(url: @Url.Action("Login", "Account"));
+    }
+}

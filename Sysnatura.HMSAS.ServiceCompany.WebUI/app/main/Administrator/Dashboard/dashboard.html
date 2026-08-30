@@ -1,0 +1,151 @@
+﻿<!--/***********************************************************************
+   Program Name             : Dashboard.html
+   Purpose                  : Html file for Dashboard
+   Requirement ID           :
+   Creation Date            : 10-06-2017
+   Created By               : Suhail
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column" ng-if="isReady" ng-init="vm.getCompanyProfile()">
+    <div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+
+        <!--<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">-->
+        <!-- HEADER -->
+        <div class="header md-accent-bg" layout="row" layout-align="space-between center">
+
+            <!-- APP TITLE -->
+            <div layout="row" layout-align="start center">
+                <md-button class="md-icon-button sidenav-toggle" hide-gt-md ng-click="vm.toggleSidenav('sidenav')"
+                           aria-label="Toggle sidenav">
+                    <md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+                </md-button>
+
+                <div class="logo" layout="row" layout-align="start center">
+                    <span class="logo-icon">
+                        <md-icon md-font-icon="icon-tile-four" class="s24"></md-icon>
+                    </span>
+                    <span class="logo-text">Dashboard</span>
+
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+        </div>
+        <!-- / HEADER -->
+        <!-- CONTENT -->
+
+        <md-content layout-padding>
+
+            <form name="submoduleForm" class="md-inline-form" novalidate>
+
+                <div layout="row" layout-padding>
+
+                    <div flex="60">
+                        <div layout-gt-sm="row">
+                            <h2 class="mt-5" flex="50">New Services</h2>
+                            <div class="text-right mt-10 pr-10" flex="50" ng-if="vm.count!=0"><span class="text-boxed pink-bg white-fg">{{vm.count}} new</span></div>
+                        </div>
+
+                        <div class="form-wrapper md-whiteframe-1dp flex-scrollable" flex="100" ms-scroll style="max-height:390px;">
+                            <table class="table dataTable">
+                                <thead>
+                                    <tr>
+                                       
+                                        <th>
+                                            <span class="column-title"></span>
+                                        </th>
+                                        <th colspan="2">
+                                            <span class="column-title">Sub Module</span>
+                                        </th>
+                                        
+                                        <th>
+                                            <span class="column-title">Added Date</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody ng-if="vm.count!=0"ng-repeat="item in vm.attributeList | groupBy: 'moduleDto.name'" >
+                                    <tr>
+                                       
+                                        <!--<td style="width:100px;"><img src="{{vm.imageUrl}}{{item[0].moduleDto.imagePath}}" alt="module-img"></td>-->
+                                        <td style="width:150px;font-size:14px;font-weight:bold;color:#808080;background-color:#f5f5f5;" colspan="4">{{item[0].moduleDto.name}}</td>
+                                    </tr>
+                                    <tr ng-repeat="attribute in item | orderBy:'-createdOn'">
+                                        <td></td>
+                                        <td style="width:100px;"><img src="{{vm.imageUrl2}}{{attribute.imagePath}}" alt="attribute-img"></td>
+                                        <td>{{attribute.name}}</td>
+                                        <td>{{attribute.createdOn| date:'dd-MM-yyyy'}} <span class="new-badge" ng-if="attribute.isNewArrivalin5Days==true"><span class="text-boxed highlight-02">new</span></span></td>
+                                        
+                                    </tr>
+
+
+
+                                </tbody>
+                                <tbody ng-if="vm.count==0">
+                                    <tr>
+                                        <td colspan="5" class="text-center">No new services to display</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="align-right" flex="40" >
+                        <div layout-gt-sm="row">
+                            <h2 class="mt-5" flex="40">Payment</h2>
+                            <div flex="60" class="text-right mt-10" ng-if="vm.company.paymentStatusEnumValue=='Free'&& vm.company.isExpiringSoon==true"><span class="highlight " >Expires on {{vm.company.initalPaymentDate|date:'dd/MM/yyyy'}}</span></div>
+                            <div flex="60" class="text-right mt-10" ng-if="vm.company.paymentStatusEnumValue=='Active'&& vm.company.isExpiringSoon==true"><span class="highlight" >Expires on {{vm.company.lastPaymentDto.paymentTo|date:'dd/MM/yyyy'}}</span></div>
+
+                        </div>
+                        <div class="form-wrapper md-whiteframe-1dp">
+                            <table class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <span class="column-title">Details</span>
+                                        </th>
+                                        <th>
+                                           
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Payment Status</td>
+                                        <td>: 
+                                        <span ng-if="vm.company.paymentStatusEnumValue=='Free'" class="text-boxed green-bg white-fg ">Free</span>
+                                        <span ng-if="vm.company.paymentStatusEnumValue=='Active'" class="text-boxed blue-bg white-fg ">Active</span>
+                                        <span ng-if="vm.company.paymentStatusEnumValue=='Suspended'" class="text-boxed red-bg white-fg ">Suspended</span>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="vm.company.lastPaymentDto.paymentId!=0 && vm.company.paymentStatusEnumValue!='Suspended' && vm.company.paymentStatusEnumValue!='Free'">
+                                        <td>Paid Amount</td>
+                                        <td>: <span class="ml-5" >{{vm.company.lastPaymentDto.paymentAmount}}</span></td>
+                                    </tr>
+                                    <tr ng-if="vm.company.lastPaymentDto.paymentId!=0 && vm.company.paymentStatusEnumValue!='Suspended' && vm.company.paymentStatusEnumValue!='Free'"> 
+                                        <td>Paid Date</td>
+                                        <td>: <span class="ml-5" >{{vm.company.lastPaymentDto.paidDate| date:'dd-MM-yyyy'}}</span></td>
+                                    </tr>
+                                    <tr ng-if="vm.company.paymentStatusEnumValue!='Suspended'">
+                                        <td>Expire date</td>
+                                        <td>:
+                                            <span class="text-boxed red-bg white-fg" ng-if="vm.company.paymentStatusEnumValue=='Active'">{{vm.company.lastPaymentDto.paymentTo|date:'dd/MM/yyyy'}}</span>
+                                        <span class="text-boxed red-bg white-fg" ng-if="vm.company.paymentStatusEnumValue=='Free'">{{vm.company.initalPaymentDate |date:'dd/MM/yyyy'}}</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+            </form>
+        </md-content>
+
+        <!-- / CONTENT -->
+    </div>
+</div>
+

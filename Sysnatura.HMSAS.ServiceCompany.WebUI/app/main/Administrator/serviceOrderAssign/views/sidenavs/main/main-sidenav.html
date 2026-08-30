@@ -1,0 +1,42 @@
+<!-- SIDENAV CONTENT -->
+<md-content class="content" flex ms-scroll>
+    <div class="navigation-simple" layout="column">              
+        <!--<md-button class="item" aria-label="New" translate translate-attr-aria-label="SO.NEW_ORDERS"
+                   ng-click="vm.getAllNewOrders(vm.companyId)"
+                   ng-class="{'selected':vm.new}">
+            <md-icon md-font-icon="icon-star" class="s16"></md-icon>
+            <span class="title" translate="SO.NEW_ORDERS">New Orders</span>
+        </md-button>-->        
+        <!--<md-button class="item" aria-label="Accepted" translate translate-attr-aria-label="SO.ACCEPTED_ORDERS"
+                   ng-click="vm.getAllAcceptedOrders(vm.companyId)"
+                   ng-class="{'selected':vm.accepted}">
+            <md-icon md-font-icon="icon-calendar-today" class="s16"></md-icon>
+            <span class="title" translate="SO.ACCEPTED_ORDERS">Accepted Orders</span>
+        </md-button>-->
+        <md-button class="item" aria-label="Completed" translate translate-attr-aria-label="SO.COMPLELTED_ORDERS"
+                   ng-click="vm.getAllCompletedOrders(vm.companyId)"
+                   ng-class="{'selected':vm.completed}">
+            <md-icon md-font-icon="icon-check" class="s16"></md-icon>
+            <span class="title" translate="SO.COMPLELTED_ORDERS">Completed Orders</span>
+        </md-button>  
+        <md-button class="item" aria-label="Timedout" translate translate-attr-aria-label="SO.TIMED_OUT_ORDERS"
+                   ng-click="vm.getAllTimedOutOrders(vm.companyId)"
+                   ng-class="{'selected':vm.timedout}">
+            <md-icon md-font-icon="icon-clock" class="s16"></md-icon>
+            <span class="title" translate="SO.TIMED_OUT_ORDERS">Timedout Orders</span>
+        </md-button>                             
+        <md-button class="item" aria-label="Rejected" translate translate-attr-aria-label="SO.REJECTED_ORDERS"
+                   ng-click="vm.getAllRejectedOrders(vm.companyId)"
+                   ng-class="{'selected':vm.rejected}">
+            <md-icon md-font-icon="icon-alert-circle" class="s16"></md-icon>
+            <span class="title" translate="SO.REJECTED_ORDERS">Rejected Orders</span>
+        </md-button>      
+        <md-button class="item" aria-label="Cancelled" translate translate-attr-aria-label="SO.CANCELLED_ORDERS"
+                   ng-click="vm.getAllCancelledOrders(vm.companyId)"
+                   ng-class="{'selected':vm.cancelled}">
+            <md-icon md-font-icon="icon-delete" class="s16"></md-icon>
+            <span class="title" translate="SO.CANCELLED_ORDERS">Cancelled Orders</span>
+        </md-button>
+    </div>
+</md-content>
+<!-- / SIDENAV CONTENT -->

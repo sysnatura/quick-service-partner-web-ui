@@ -1,0 +1,370 @@
+<!--/***********************************************************************
+   Program Name             : details.html
+   Purpose                  : 
+   Requirement ID           :
+   Creation Date            : 28-2-2017
+   Created By               : Finson
+   Last Modified By         :
+   Modification Date        :
+   Change Request/Bug Nos   :
+/***********************************************************************/-->
+
+<div class="sample scrollable md-whiteframe-10dp " layout="column" layout-align="center none" ng-cloak>
+    <md-content class="md-padding md-whiteframe-6dp style-102" flex="100">
+        <md-tabs md-dynamic-height>
+            <md-tab label="Details">
+
+                <div class="price-tables" flex layout="row" layout-wrap>
+                    <div layout="column" flex="45">
+                        <div class="price-table style-2 md-whiteframe-1dp">
+                            <div class="package-type md-accent-fg" layout="row">
+                                <div flex="60" class="text-left">Order Details</div>
+                                <div flex="40" class="text-right">
+                                    <md-button class="button-style-3 md-warn" ng-click="vm.updateServiceDate()" ng-if="vm.sDateModified" md-no-ink>
+                                        Update
+                                        <md-tooltip> <span>Update service/alternate date</span></md-tooltip>
+                                    </md-button>
+                                </div>
+                            </div>
+                            <div class="terms" layout="column" layout-align="start center">
+                                <table class="table-101">
+                                    <tr>
+                                        <td class="label" translate="SO.ORDER_NUMBER">Order Number</td>
+                                        <td class="value">: {{vm.serviceOrderAssign.serviceOrderDto.orderNo}}</td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td class="label" translate="SO.ORDER_TYPE">Order Type</td>
+                                        <td class="value">: {{vm.serviceOrderAssign.serviceOrderDto.orderType}}</td>
+                                    </tr>-->
+                                    <tr ng-if="vm.aOrderId">
+                                        <td class="label" translate="SO.ORDER_STATUS">Order Status</td>
+                                        <td class="value">: <span class="ml-16 text-boxed blue-bg white-fg ng-binding">{{vm.serviceOrderAssign.orderAssignStatusText}}</span></td>
+                                    </tr>
+                                    <tr ng-if="vm.sOrderId">
+                                        <td class="label" translate="SO.ORDER_STATUS">Order Status</td>
+                                        <td class="value">: <span class="ml-16 text-boxed blue-bg white-fg ng-binding">{{vm.serviceOrderAssign.serviceOrderDto.orderStatusEnumValue}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" translate="SO.SERVICE_DATE">Service Date</td>
+                                        <td class="value" ng-show="vm.serviceOrderAssign.orderAssignStatus != 0">: {{vm.serviceOrderAssign.serviceOrderDto.serviceDate | date:'dd-MMM-yyyy, h:mma'}}</td>
+                                        <td ng-show="vm.serviceOrderAssign.orderAssignStatus == 0">
+                                            :
+                                            <md-tooltip>Click to change service date</md-tooltip>
+                                            <input mdc-datetime-picker format="DD-MMM-YYYY hh:mm a" min-date="vm.currentDate" max-date="vm.serviceOrderAssign.serviceOrderDto.alternativeServiceDate" date="true" time="true" type="text" id="serviceDate" placeholder="Service Date" ng-model="vm.serviceOrderAssign.serviceOrderDto.serviceDate" class="date-pick-1">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" translate="SO.ALTERNATE_DATE">Alternate Date</td>
+                                        <td class="value" ng-show="vm.serviceOrderAssign.orderAssignStatus != 0">: {{vm.serviceOrderAssign.serviceOrderDto.alternativeServiceDate | date:'dd-MMM-yyyy, h:mma'}}</td>
+                                        <td ng-show="vm.serviceOrderAssign.orderAssignStatus == 0">
+                                            :
+                                            <md-tooltip>Click to change alernate service date</md-tooltip>
+                                            <input mdc-datetime-picker format="DD-MMM-YYYY hh:mm a" min-date="vm.serviceOrderAssign.serviceOrderDto.serviceDate" max-date="" date="true" time="true" type="text" id="alternativeDate" placeholder="Alternate Date" ng-model="vm.serviceOrderAssign.serviceOrderDto.alternativeServiceDate" class="date-pick-1">
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="vm.aOrderId && !vm.orderRejected && !vm.orderCompleted && !vm.orderCancelled && !vm.orderTimedOut">
+                                        <td class="label" translate="SO.FIRST_NAME">First Name</td>
+                                        <td class="value">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.firstName}}</td>
+                                    </tr>
+                                    <tr ng-if="vm.aOrderId && !vm.orderRejected && !vm.orderCompleted && !vm.orderCancelled && !vm.orderTimedOut">
+                                        <td class="label" translate="SO.LAST_NAME">Last Name</td>
+                                        <td class="value" ng-if="vm.serviceOrderAssign.serviceOrderDto.customerDto.lastName">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.lastName}}</td>
+                                        <td class="value" ng-if="!vm.serviceOrderAssign.serviceOrderDto.customerDto.lastName">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.lastName}}</td>
+                                    </tr>
+                                    <tr ng-if="vm.aOrderId && !vm.orderRejected && !vm.orderCompleted && !vm.orderCancelled && !vm.orderTimedOut">
+                                        <td class="label" translate="SO.MOBILE_NUMBER">Mobile Number</td>
+                                        <td class="value" ng-if="vm.serviceOrderAssign.serviceOrderDto.customerDto.contactDto.mobileNumber">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.contactDto.mobileNumber}}</td>
+                                        <td class="value" ng-if="!vm.serviceOrderAssign.serviceOrderDto.customerDto.contactDto.mobileNumber">: --</td>
+                                    </tr>
+                                    <tr class="h3" ng-if="vm.serviceOrderAssign.serviceOrderDto.serviceOrderItemDto[0].description!= null">
+                                        <td class="label pb-10"> Order Description</td>
+                                        <td class="value">
+                                            :
+                                            {{vm.serviceOrderAssign.serviceOrderDto.serviceOrderItemDto[0].description}}
+                                        </td>
+
+                                    </tr>                                   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="column" flex="55">
+                        <div class="price-table style-2 md-whiteframe-1dp">
+                            <div class="package-type md-accent-fg">
+                                <div flex="60" class="text-left">Additional Details</div>
+                            </div>
+                            <div class="terms" layout="column" layout-align="start center" ng-repeat="serviceOrderItem in vm.serviceOrderAssign.serviceOrderDto.serviceOrderItemDto">
+                                <table class="table-101">
+                                    <tr>
+                                        <td class="label" translate="SO.MODULE_NAME">Module Name</td>
+                                        <td class="value">: {{serviceOrderItem.attributeDto.moduleDto.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" translate="SO.ATTRIBUTE">Attribute</td>
+                                        <td class="value">: {{serviceOrderItem.attributeDto.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" translate="SO.DESCRIPTION">Description</td>
+                                        <td class="value">: {{serviceOrderItem.description}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" translate="SO.URGENT">Urgent</td>
+                                        <td class="value" ng-if="serviceOrderItem.isUrgent == 1">: Yes</td>
+                                        <td class="value" ng-if="serviceOrderItem.isUrgent == 0">: No</td>
+                                    </tr>
+                                </table>
+                                <table class="table-101" ng-if="serviceOrderItem.serviceOrderItemAnswersDtoList!=null">
+                                    <tr ng-if="serviceOrderItem.serviceOrderItemAnswersDtoList.length!=0">
+                                        <th>
+                                            <p translate="SO.QUESTION">Question</p>
+                                        </th>
+                                        <th>
+                                            <p translate="SO.ANSWER">Answer</p>
+                                        </th>
+                                    </tr>
+                                    <tr class="terms" ng-repeat="serviceOrderItemAnswer in serviceOrderItem.serviceOrderItemAnswersDtoList">
+                                        <td class="label">
+                                            <p>{{serviceOrderItemAnswer.attributeQuestionDto.description}}</p>
+                                        </td>
+                                        <td class="value">
+                                            <p>{{serviceOrderItemAnswer.answer}}</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </md-tab>
+            <md-tab label="Location Details" ng-if="vm.aOrderId && !vm.orderRejected && !vm.orderCompleted && !vm.orderCancelled && !vm.orderTimedOut">
+                <div layout="row">
+                    <div class="form-wrapper" flex="60">
+                        <p ng-if="map.center.latitude != null && map.center.longitude != null">
+                            <ui-gmap-google-map center="map.center" zoom="map.zoom" options="options">
+                                <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options" events="vm.marker.events" idkey="vm.marker.id">
+                                </ui-gmap-marker>
+                                <ui-gmap-window show="false" coords="vm.infoWin.coords" options="vm.infoWin.infoWinOptions" closeclick="vm.infoWin.infoWinOptions.visible=false">
+                                    <span>{{vm.marker.content}}</span>
+                                </ui-gmap-window>
+                            </ui-gmap-google-map>
+                        </p>
+                        <p ng-if="map.center.latitude == null && map.center.longitude == null">Customer Geo Location is not set. Unable to display map.</p>
+                    </div>
+                    <div class="form-wrapper" flex="40">
+                        <table class="p-20 table-101">
+                            <tr>
+                                <td class="label" translate="SO.FIRST_NAME">First Name</td>
+                                <td class="value">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.firstName}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.LAST_NAME">Last Name</td>
+                                <td class="value">: {{vm.serviceOrderAssign.serviceOrderDto.customerDto.lastName}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.LOCATION">Location</td>
+                                <td class="value">: {{vm.custAddress.location}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.HOUSE_NUMBER">House Number</td>
+                                <td class="value">: {{vm.custAddress.houseNo}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.CITY">City</td>
+                                <td class="value">: {{vm.custAddress.cityDto.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.STATE">State</td>
+                                <td class="value">: {{vm.custAddress.stateDto.name}}</td>
+                            </tr>
+                            <tr>
+                                <td class="label" translate="SO.COUNTRY">Country</td>
+                                <td class="value">: {{vm.custAddress.countryDto.name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </md-tab>
+        <md-tab label="Assign/Reassign Order" ng-if="vm.aOrderId">
+
+            <div class="price-tables text-center" flex layout="row">
+                <div class="text-center text-danger" layout="column" flex="100" ng-show="vm.orderCancelled">
+
+                    <h2 class="md-warn-fg">Order Cancelled by Customer Care..!</h2>
+
+                </div>
+
+                <div class="text-center text-danger" layout="column" flex="100" ng-show="vm.orderTimedOut">
+
+                    <h2 class="md-warn-fg">Order Timedout..!</h2>
+
+                </div>
+
+                <div class="text-center text-danger" layout="column" flex="100" ng-show="vm.orderRejected">
+
+                    <h2 class="md-warn-fg">Order Rejected..!</h2>
+
+                </div>
+
+                <div class="text-center text-danger" layout="column" flex="100" ng-show="vm.orderCompleted">
+
+                    <h2 class="md-accent-fg">Order Completed..!</h2>
+
+                </div>
+                <div layout="column" flex="35" ng-show="vm.allowAssign || vm.allowReschedule">
+                    <div class="price-table style-2 md-whiteframe-1dp min-h-220px">
+                        <div class="package-type md-accent-fg" ng-show="vm.allowAssign">Assign Order</div>
+                        <div class="package-type md-accent-fg" ng-show="vm.allowReschedule">Reassign Order</div>
+                        <div class="terms" layout="column" layout-align="start center">
+                            <div class="min-w-75p">
+                                <ng-form name="selectEmployee">
+                                    <md-input-container class="md-block">
+                                        <label>Select Employee</label>
+                                        <md-select name="companyEmployee" ng-model="vm.serviceCompanySchedule.companyEmployeeId" required>
+                                            <md-optgroup>
+                                                <label class="md-container-ignore">Select Employee</label>
+                                                <md-option ng-repeat="emp in vm.serviceCompanyEmpList | filter:filterEmployee" value="{{emp.serviceCompanyEmployeeId}}" ng-click="vm.showEmpDetails(emp)">
+                                                    {{emp.firstName}} {{emp.lastName}}
+                                                </md-option>
+                                            </md-optgroup>
+                                        </md-select>
+                                        <div ng-messages="selectEmployee.companyEmployee.$error" role="alert">
+                                            <div ng-message="required">
+                                                <span >Please select employee</span>
+                                            </div>
+
+                                        </div>
+                                    </md-input-container>
+                                </ng-form>
+                                
+                             
+                              
+                            </div>
+                            <table>
+                                <tr ng-show="vm.emp.fName">
+                                    <td class="label" translate="SO.FIRST_NAME">First Name</td>
+                                    <td class="value">: {{vm.emp.fName}}</td>
+                                </tr>
+                                <tr ng-show="vm.emp.lName">
+                                    <td class="label" translate="SO.LAST_NAME">Last Name</td>
+                                    <td class="value">: {{vm.emp.lName}}</td>
+                                </tr>
+                                <tr ng-show="vm.emp.desig">
+                                    <td class="label" translate="SO.DESIGNATION">Designation</td>
+                                    <td class="value">: {{vm.emp.desig}}</td>
+                                </tr>
+                                <tr ng-show="vm.emp.isGlobalStaff != null">
+                                    <td class="label" translate="SO.GLOBAL_STAFF">Global Staff</td>
+                                    <td class="value" ng-show="vm.emp.isGlobalStaff">: Yes</td>
+                                    <td class="value" ng-show="!vm.emp.isGlobalStaff">: No</td>
+                                </tr>
+                            </table>
+                            <div ng-show="vm.allowAssign">
+                                <md-button class="cta-button md-primary md-raised" ng-click="vm.assignEmp()">Assign</md-button>
+                            </div>
+                            <div ng-show="vm.allowReschedule">
+                                <md-button class="cta-button md-primary md-raised" ng-click="vm.assignEmp()">Reassign</md-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div layout="column" flex="35" ng-show="vm.allowReject">
+                    <div class="price-table style-2 md-whiteframe-1dp min-h-220px">
+                        <div class="package-type md-accent-fg">Reject Order</div>
+                        <div class="terms" layout="column" layout-align="start center">
+
+                            <ng-form name="rejectOrder">
+                                <md-input-container class="md-block min-w-75p">
+                                    <label>Reason</label>
+                                    <textarea name="rejectReason" ng-model="vm.serviceOrderAssign.description" md-maxlength="150" max-rows="5" required></textarea>
+                                    <div ng-messages="rejectOrder.rejectReason.$error" role="alert">
+                                        <div ng-message="required">
+                                            <span >Reject reason required</span>
+                                        </div>
+                                    </div>
+
+
+
+                                </md-input-container>
+                                <md-button ng-disabled="!vm.serviceOrderAssign.description" class="md-primary md-raised" ng-click="vm.rejectOrder()">Reject</md-button>
+
+                            </ng-form>
+                        </div>
+                    </div>
+                </div>
+                <div layout="column" flex="30" ng-show="vm.allowComplete">
+                    <div class="price-table style-2 md-whiteframe-1dp min-h-220px">
+                        <div class="package-type md-accent-fg">Complete order</div>
+                        <div class="terms" layout="column" layout-align="start center">
+
+                            <ng-form name="actualRate">
+                                <label>Actual Rate</label>
+                                <md-input-container class="md-block">
+
+
+                                    <input name="rate" allowonlynumbers ng-model="vm.serviceOrderAssign.actualRate" ng-required="true" allow-only-numbers flex="80"></input>-{{vm.serviceOrderAssign.serviceOrderDto.serviceOrderAddressDto.countryDto.currencyDto.code}}
+                                    <div ng-messages="actualRate.rate.$error" role="alert">
+                                        <div ng-message="required">
+
+                                            <span>Actual rate required</span>
+                                        </div>
+                                    </div>
+                                </md-input-container>
+                                <span>Mark this order as Complete.</span>
+                                <md-button class="md-raised md-warn" ng-disabled="!vm.serviceOrderAssign.actualRate" ng-click="vm.completeOrder()">Complete</md-button>
+
+                            </ng-form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+            <md-tab label="Assign Order to Branch" ng-if="vm.sOrderId && (vm.serviceOrderAssign.serviceOrderDto.orderStatusEnumValue ==='Arriving' || vm.serviceOrderAssign.serviceOrderDto.orderStatusEnumValue ==='Placed')
+                    && loggedInCompanyUser.cmpanyUsersDto.serviceCompanyDto.isRealEstate">
+                <div layout="row">
+                    <div class="price-tables" flex layout="row" layout-wrap>
+                        <div class="price-table style-2 md-whiteframe-1dp" layout="column" flex="35">
+                            <div class="package-type md-accent-fg">Assign Order</div>
+                            <div class="terms" layout="column" layout-align="start center">
+                                <div>
+                                    <md-input-container class="md-block">
+                                        <label>Select Branch</label>
+                                        <md-select name="companyBranch" ng-model="vm.serviceOrderAssign.branchId" required>
+                                            <md-optgroup>
+                                                <label class="md-container-ignore">Select Employee</label>
+                                                <md-option ng-repeat="branch in vm.companyBranchList" value="{{branch.branchId}}" ng-click="vm.showBranchdetails(branch)">
+                                                    {{branch.name}}
+                                                </md-option>
+                                            </md-optgroup>
+                                        </md-select>
+                                        <div ng-messages="detailsForm.companyBranch.$error" role="alert">
+                                            <div ng-message="required">
+                                                <span translate="SO.REQUIRED">Required</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <table>
+                                    <tr ng-show="vm.branch.name">
+                                        <td class="label" translate="SO.NAME">Name</td>
+                                        <td class="value">: {{vm.branch.name}}</td>
+                                    </tr>
+                                    <tr ng-show="vm.branch.serviceCompanyDto.name">
+                                        <td class="label" translate="SO.COMPANY_NAME">Company Name</td>
+                                        <td class="value">: {{vm.branch.serviceCompanyDto.name}}</td>
+                                    </tr>
+                                </table>
+                                <div>
+                                    <md-button class="cta-button md-primary md-raised" ng-click="vm.assignBranch()" ng-disabled="!vm.branch">Assign</md-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </md-tab>
+            </md-tabs>
+    </md-content>
+</div>
