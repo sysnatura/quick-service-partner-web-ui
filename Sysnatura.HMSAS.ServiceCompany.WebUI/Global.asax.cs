@@ -25,18 +25,10 @@ namespace Sysnatura.HMSAS.ServiceCompanay.WebUI
         }
         protected void Application_BeginRequest()
         {
-            //commented by nevin
-            //    to fix cors isue
-            //    07/07/22
-            //if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
-            //{
-            //    Response.Flush();
-            //}
-            if (Request.HttpMethod == "OPTIONS")
+            if (Request.Headers.AllKeys.Contains("Origin") && Request.HttpMethod == "OPTIONS")
             {
                 Response.Flush();
             }
-
         }
     }
 }

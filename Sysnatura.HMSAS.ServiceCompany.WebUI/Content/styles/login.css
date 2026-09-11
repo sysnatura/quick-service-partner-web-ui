@@ -188,19 +188,20 @@
           max-width: 100%;
           margin-bottom: 23px;
       }
-      #login-v2 #login-v2-form-wrapper .btn-blue-01 {
-          text-transform: uppercase;
-          font-weight: bold;
-          color: #fff;
-          background-color: #039be5;
-          border-radius: 2px;
-          box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-          padding: 6px 18px;
-          margin-top: 10px;
-      }
-      #login-v2 #login-v2-form-wrapper .btn-blue-01:hover {
-          background-color: #0192d9;
-      }
+    #login-v2 #login-v2-form-wrapper .btn-blue-01 {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #fff;
+        background-color: #03284f;
+        border-radius: 2px;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+        padding: 6px 18px;
+        margin-top: 10px;
+    }
+        #login-v2 #login-v2-form-wrapper .btn-blue-01:hover {
+            background-color: #FFF;
+            color: #03284f;
+        }
         #login-v2 #login-v2-form-wrapper #login-v2-form form md-checkbox {
           margin: 0; }
         #login-v2 #login-v2-form-wrapper #login-v2-form form .remember-forgot-password {
@@ -307,7 +308,9 @@
       #lock #lock-form-wrapper #lock-form .message {
         font-weight: 500;
         text-align: center; }
-
+.logo img {
+    width: 60%;
+}
 @media screen and (max-width: 960px) {
   #lock #lock-form-wrapper {
     padding: 16px; }

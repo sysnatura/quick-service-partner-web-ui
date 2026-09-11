@@ -36,6 +36,9 @@
 #splash-screen {
     background-color: #162e47;
 }
+#splash-screen .center .logo{
+    width:200px;
+}
 
 #splash-screen .logo {
     background: transparent !important;
@@ -117,7 +120,7 @@
 }
 
 [md-theme="default"] .md-accent-bg {
-    background-color: #0777ce !important;
+    background-color: #1bb646 !important;
 }
 
 [md-theme="default"] .md-primary-bg {

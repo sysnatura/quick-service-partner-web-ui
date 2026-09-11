@@ -464,8 +464,10 @@
             });
         }
 
-            function completeOrder() {
+        function completeOrder() {
+                debugger
             vm.serviceOrderAssign.orderAssignStatus = vm.orderStatusTextEnum.indexOf("COMPLETED");
+            vm.serviceOrderAssign.serviceOrderDto.actualRate = vm.serviceOrderAssign.actualRate
             blockUI.start();
             serviceOrderAssignService.updateServiceOrderAssign(vm.serviceOrderAssign).then(function (res) {
                 if (res.status == "200") {

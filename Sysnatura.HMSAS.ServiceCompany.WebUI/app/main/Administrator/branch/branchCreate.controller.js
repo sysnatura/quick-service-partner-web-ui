@@ -174,8 +174,9 @@
         function getAllCountries() {
             //  blockUI.start();
             addressService.getAllCountry().then(function (res) {
-                vm.countryList = res.data;                 
-                    setActiveCountry();
+                vm.countryList = res.data;
+                if (!vm.isUpdate) setActiveCountry();
+                else getAllStateByCountry(vm.branch.addressDto.countryId);
             }, function (res) {
                 //   blockUI.stop();
             });

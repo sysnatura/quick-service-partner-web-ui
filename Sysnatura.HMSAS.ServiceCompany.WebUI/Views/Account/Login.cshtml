@@ -9,7 +9,7 @@
 @Styles.Render("~/Content/css")
 <head>
     <title>
-        Partners Login - AQS
+        Partners Login - Netizen Maintenance System
     </title>
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 </head>
@@ -130,15 +130,15 @@
                 <div class="btn-group">
                     <button id="btnSignIn" type="submit" class="btn btn-blue-01 login-btn">Sign In</button>
                 </div>
-
-                <script type="text/javascript">
+                @* Commented by Jithin S on 12/10/2022 for disable timezon validation for login  *@
+                @*<script type="text/javascript">
                     var dt = new Date();
                     var os = dt.getTimezoneOffset();
                     if (os != -240) {
                         document.getElementById('btnSignIn').disabled = true;
                         document.write('<br/><br/><span class="text-danger">Please set the computer system time zone to<br/>(UTC +4:00) Abu Dhabi, Muscat and reload the page.</span>');
                     }
-                </script>
+                </script>*@
             </form>
             <div layout="column" layout-align="start center">
             </div>

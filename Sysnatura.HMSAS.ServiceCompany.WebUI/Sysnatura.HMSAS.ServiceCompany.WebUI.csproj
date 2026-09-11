@@ -471,6 +471,8 @@
     <Content Include="assets\images\logos\gulp.png" />
     <Content Include="assets\images\logos\jasmine.png" />
     <Content Include="assets\images\logos\karma.png" />
+    <Content Include="assets\images\logos\logo-01.png" />
+    <Content Include="assets\images\logos\logo-02.png" />
     <Content Include="assets\images\logos\node-sass.png" />
     <Content Include="assets\images\logos\protractor.png" />
     <Content Include="assets\images\logos\yeoman.png" />
