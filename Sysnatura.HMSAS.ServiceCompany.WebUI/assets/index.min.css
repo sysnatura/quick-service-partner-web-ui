@@ -7354,16 +7354,7 @@ md-toolbar ~ md-content > md-list {
     height: 64px;
     max-height: 64px;
     padding: 0 16px;
-    margin: 0;
-    background-color: #1bb646;
-}
-
-.md-button.md-default-theme.md-raised[disabled], .md-button.md-raised[disabled], .md-button.md-default-theme.md-fab[disabled], .md-button.md-fab[disabled] {
-    background-color: #1bb646;
-}
-.md-button.md-default-theme.md-accent.md-raised, .md-button.md-accent.md-raised, .md-button.md-default-theme.md-accent.md-fab, .md-button.md-accent.md-fab {
-    color: rgb(255,255,255);
-    background-color: rgb(27 182 70);
+    margin: 0
 }
 
     .md-toolbar-tools h1, .md-toolbar-tools h2, .md-toolbar-tools h3 {
@@ -56848,7 +56839,7 @@ body.ms-search-bar-expanded #toolbar {
     }
 
         .ms-navigation .ms-navigation-node .ms-navigation-item:hover {
-            background: rgb(27 182 70)
+            background: rgba(0,0,0,0.1)
         }
 
         .ms-navigation .ms-navigation-node .ms-navigation-item > .ms-navigation-button {
