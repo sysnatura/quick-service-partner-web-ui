@@ -82,12 +82,12 @@
         // Store state in the root scope for easy access
         $rootScope.state = $state;
 
-        //$rootScope.url = "http://localhost:36365/Api/";
-        //$rootScope.imgurl = "http://localhost:36365/";
+        $rootScope.url = "http://localhost:36365/Api/";
+        $rootScope.imgurl = "http://localhost:36365/";
 
 
-        $rootScope.url = "https://aqsapi.aspiromtech.com/Api/";
-        $rootScope.imgurl = "https://aqsapi.aspiromtech.com/";
+      //  $rootScope.url = "https://aqsapi.aspiromtech.com/Api/";
+        //$rootScope.imgurl = "https://aqsapi.aspiromtech.com/";
 
         $rootScope.locationFilters = { country: 'in' };
         $rootScope.locationDetails = { watchEnter: true };
