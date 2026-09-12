@@ -67,7 +67,6 @@ namespace Sysnatura.HMSAS.ServiceCompanay.WebUI
                 "~/bower_components/angular-material/angular-material.min.js",
                 "~/bower_components/angular-translate/angular-translate.min.js",
                 "~/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js",
-                "~/bower_components/angular-ui-router/release/angular-ui-router.min.js",
                 "~/bower_components/mobile-detect/mobile-detect.min.js",
                 "~/bower_components/moment/moment.min.js",
                 "~/bower_components/perfect-scrollbar/js/perfect-scrollbar.min.js",
