@@ -14,7 +14,7 @@
 
       //  Google Map Configurations
         uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyCAl-t_5yPp7NyYLwNjO8Ypzw1AU3RdrkQ',
+            key: 'AIzaSyBLGVOPEY0X0CWAOdIZ6v8rwKShvGk8rm8',
             //v: '3.20', //defaults to latest 3.X anyhow
             libraries: 'places,geometry,visualization'
         });
