@@ -89,7 +89,8 @@
       //  $rootScope.url = "https://aqsapi.aspiromtech.com/Api/";
         //$rootScope.imgurl = "https://aqsapi.aspiromtech.com/";
 
-        $rootScope.locationFilters = { country: 'in' };
+        // $rootScope.locationFilters = { country: 'in' };// restricted country filter for location search. If you want to restrict the country, then set the country code here. For example, 'in' for India, 'us' for USA, 'au' for Australia etc. If you want to allow all countries, then set it to empty object.
+        $rootScope.locationFilters = { };
         $rootScope.locationDetails = { watchEnter: true };
       
         // Cleanup
